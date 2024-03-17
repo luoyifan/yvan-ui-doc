@@ -1,6 +1,7 @@
 import {defineConfig} from 'vitepress'
 import wms from '../wms/index'
 import yvanui from '../yvanui/index'
+import timeline from "vitepress-markdown-timeline"
 
 // refer https://vitepress.dev/reference/site-config for details
 export default defineConfig({
@@ -8,11 +9,32 @@ export default defineConfig({
     title: 'YvanUI',
     description: '企业级无代码框架',
     head: [['link', {rel: 'icon', href: '/favicon.ico'}]],
-
+    appearance: 'dark',
+    // postRender(context) {
+    //     // ...
+    //     console.log('postRender', context)
+    // },
+    // transformHead(context) {
+    //     // ...
+    //     console.log('transformHead', context)
+    // },
+    // transformPageData(pageData) {
+    //     console.log('transformPageData', pageData)
+    // },
+    // transformHtml(code, id, context) {
+    //     // ...
+    //     console.log('transformHtml', code, id, context)
+    // },
     themeConfig: {
         nav: [
             yvanui.getNav(),
             wms.getNav(),
+            {
+                text: "关于",
+                items: [
+                    {text: '作者', link: '/author'},
+                ],
+            }
         ],
 
         sidebar: {
@@ -109,5 +131,19 @@ export default defineConfig({
         },
     },
 
+    //markdown配置
+    markdown: {
+        //行号显示
+        lineNumbers: true,
 
+        //时间线
+        config: (md) => {
+            md.use(timeline);
+        },
+
+        // 开启图片懒加载
+        image: {
+            lazyLoading: true
+        },
+    },
 });

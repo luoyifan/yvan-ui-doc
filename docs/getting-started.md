@@ -1,4 +1,7 @@
 # 快速上手
+> https://github.com/Yiov/vitepress-doc.git
+
+> https://github.com/vuejs/blog.git
 
 > 更新时间：2024-1-28
 

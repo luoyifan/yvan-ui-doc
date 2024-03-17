@@ -6,7 +6,7 @@ import yaml from 'js-yaml'
  * 解析 markDown 文件，提取出 meta 元数据信息
  */
 export function parseMarkdownFile(file) {
-    console.log('parseMarkdownFile -> ' + file)
+    // console.log('parseMarkdownFile -> ' + file)
     // 获取文件内容
     let content = fs.readFileSync(file, 'utf-8');
 

@@ -9,10 +9,15 @@ hero:
     src: /logo.png
     alt: Galaxis Dev Platform
   actions:
-    - text: 基础平台
-      link: /yvanui/
-    - text: WMS系统
+    - theme: brand
+      text: 基础平台
+      link: /yvanui/01_index
+    - theme: alt
+      text: WMS系统
       link: /wms/01_index
+    - theme: sponsor
+      text: 随笔
+      link: /getting-started
 
 features:
   - icon: 🧬
@@ -39,7 +44,6 @@ features:
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
-
 
   --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
   --vp-home-hero-image-filter: blur(40px);
