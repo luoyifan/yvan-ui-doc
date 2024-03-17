@@ -81,7 +81,7 @@ export default defineConfig({
 
         //页脚
         footer: {
-            copyright: 'Copyright © 2024 备案号：<a href="https://beian.miit.gov.cn/">鄂ICP备18029062号</a>',
+            // copyright: 'Copyright © 2024 备案号：<a href="https://beian.miit.gov.cn/">鄂ICP备18029062号</a>',
         },
 
         //本地搜索
@@ -144,15 +144,11 @@ export default defineConfig({
 
     //markdown配置
     markdown: {
-        //行号显示
+        linkify: false,
         lineNumbers: true,
-
-        //时间线
         config: (md) => {
             md.use(timeline);
         },
-
-        // 开启图片懒加载
         image: {
             lazyLoading: true
         },

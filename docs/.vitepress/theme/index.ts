@@ -24,7 +24,7 @@ export default {
             props.class = frontmatter.value.layoutClass
         }
 
-        console.log('props', props)
+        // console.log('props', props)
         return h(DefaultTheme.Layout, props)
     },
 
@@ -34,6 +34,6 @@ export default {
         // Get frontmatter and route
         const {frontmatter} = useData();
 
-        console.log('setup')
+        // console.log('setup')
     }
 }

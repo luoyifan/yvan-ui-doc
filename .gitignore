@@ -11,6 +11,7 @@
 .mtj.tmp/
 
 docs/.vitepress/cache/
+docs/.vitepress/dist/
 
 # Package Files #
 *.war
