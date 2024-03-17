@@ -4,6 +4,8 @@ import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import "vitepress-markdown-timeline/dist/theme/index.css"
 
+console.log('DefaultTheme', DefaultTheme)
+
 export default {
     extends: DefaultTheme,
 

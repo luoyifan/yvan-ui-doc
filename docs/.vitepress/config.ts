@@ -131,6 +131,17 @@ export default defineConfig({
         },
     },
 
+    // buildEnd(config) {
+    //     // ...
+    //     console.log('buildEnd', config)
+    // },
+
+    vite: {
+        plugins: [
+            VitePressPreprocessMdPlugin(),
+        ],
+    },
+
     //markdown配置
     markdown: {
         //行号显示
@@ -147,3 +158,40 @@ export default defineConfig({
         },
     },
 });
+
+function VitePressPreprocessMdPlugin() {
+    return {
+        name: 'vitepress:preprocess-md',
+        transform(code, id) {
+            if (id.endsWith('.md')) {
+
+                // code = code.replace(/<img/g, '<img loading="lazy"')
+
+                // 将图片格式做转换
+                // ![[Pasted image 20240315152420.png]]
+                // 转换为
+                // ![](./_assets/Pasted%20image%2020240315152420.png)
+                code.match(/!\[\[([\s\S]*?)\]\]/g).forEach((item) => {
+                    const imgName = item.substring(3, item.length - 2)
+                        .replace(/ /g, '%20')
+                    console.log('imgName =', item.substring(3, item.length - 2))
+
+                    if (imgName.indexOf('/') >= 0) {
+                        // 图片中包含 / 符号, 转换为 ![](图片地址) 格式
+                        // code = code.replace(item, `![](${imgName})`);
+                        return;
+                    }
+
+                    // 转换为 URLEncode 格式
+                    // code = code.replace(item, `![](_assets/${imgName})`);
+
+                    //<img src="./_assets/Pasted%20image%2020240315152420.png" alt="" loading="lazy">
+                    // code = code.replace(item, `<img src="./_assets/${imgName}" alt="" loading="lazy">`);
+                });
+                console.log('transform', id, code)
+                return {code, id}
+            }
+            return null
+        }
+    }
+}
