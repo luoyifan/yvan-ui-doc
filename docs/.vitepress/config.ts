@@ -1,5 +1,5 @@
 import {defineConfig} from 'vitepress'
-import wms from '../wms/index'
+// import wms from '../wms/index'
 import yvanui from '../yvanui/index'
 import doc from '../doc/index'
 import timeline from "vitepress-markdown-timeline"
@@ -29,7 +29,7 @@ export default defineConfig({
     themeConfig: {
         nav: [
             yvanui.getNav(),
-            wms.getNav(),
+            // wms.getNav(),
             doc.getNav(),
         ],
 
@@ -52,7 +52,7 @@ export default defineConfig({
             // ],
 
             // 当用户位于 `config` 目录时，会显示此侧边栏
-            '/wms/': wms.getSidebar(),
+            // '/wms/': wms.getSidebar(),
             // '/wms/': [
             //     {
             //         text: 'inbound', collapsed: false,

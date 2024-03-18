@@ -12,9 +12,9 @@ hero:
     - theme: brand
       text: 基础平台
       link: /yvanui/01_index
-    - theme: alt
-      text: WMS系统
-      link: /wms/01_index
+    # - theme: alt
+    #   text: WMS系统
+    #   link: /wms/01_index
     - theme: sponsor
       text: 分享
       link: /doc/share
