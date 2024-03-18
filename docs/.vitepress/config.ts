@@ -1,6 +1,7 @@
 import {defineConfig} from 'vitepress'
 import wms from '../wms/index'
 import yvanui from '../yvanui/index'
+import doc from '../doc/index'
 import timeline from "vitepress-markdown-timeline"
 
 // refer https://vitepress.dev/reference/site-config for details
@@ -29,12 +30,7 @@ export default defineConfig({
         nav: [
             yvanui.getNav(),
             wms.getNav(),
-            {
-                text: "关于",
-                items: [
-                    {text: '作者', link: '/author'},
-                ],
-            }
+            doc.getNav(),
         ],
 
         sidebar: {
@@ -77,11 +73,12 @@ export default defineConfig({
             //         ]
             //     }
             // ]
+            ...doc.getSidebar(),
         },
 
         //页脚
         footer: {
-            // copyright: 'Copyright © 2024 备案号：<a href="https://beian.miit.gov.cn/">鄂ICP备18029062号</a>',
+            copyright: 'Copyright © 2024 备案号：<a href="https://beian.miit.gov.cn/">鄂ICP备18029062号</a>',
         },
 
         //本地搜索

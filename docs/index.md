@@ -16,8 +16,8 @@ hero:
       text: WMS系统
       link: /wms/01_index
     - theme: sponsor
-      text: 随笔
-      link: /getting-started
+      text: 分享
+      link: /doc/share
 
 features:
   - icon: 🧬
