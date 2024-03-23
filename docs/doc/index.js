@@ -2,8 +2,6 @@ import path from 'path'
 import fs from 'fs'
 import {deepTravDir, parseMarkdownFile} from '../utils'
 
-console.log('deepTravMarkdownFile', path.join(__dirname, '/share'));
-
 function deepTrav2(linkPrefix, rootDir, relDir) {
     const absDirPath = path.join(rootDir, relDir)
     console.log('scanDir', absDirPath)

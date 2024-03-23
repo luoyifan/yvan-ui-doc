@@ -72,4 +72,4 @@ out/
 target
 pom.xml.versionsBackup
 build/
-node_modules
+node_modules/

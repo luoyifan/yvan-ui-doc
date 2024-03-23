@@ -13,7 +13,7 @@ export function parseMarkdownFile(file) {
     // 提取第一个 --- 至 --- 的内容, 并且用 yaml 格式解析他
     const r = content.match(/---([\s\S]*?)---/);
     if (!r) {
-        console.error('解析失败', file)
+        console.error('解析失败,找不到文档头', file, content)
         return;
     }
     const result = yaml.load(r[1])
