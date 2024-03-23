@@ -6,7 +6,7 @@ function deepTrav2(linkPrefix, rootDir, relDir) {
     const absDirPath = path.join(rootDir, relDir)
     console.log('scanDir', absDirPath)
     const result = {
-        text: '根目录',
+        text: '根目录1',
         items: []
     }
     result.items = []
@@ -49,10 +49,22 @@ export default {
         return {
             text: '随笔',
             items: [
-                //{text: "技术", link: '/doc/tech'},
-                // {text: "分享", link: '/doc/share',},
-                techResult,
-                shareResult,
+                {text: "技术", link: '/doc/tech'},
+                {
+                    text: "分享",
+                    items: [
+                        // 找到 shareResult 的 items 中 text值最大的5条记录
+                        ...shareResult.items.sort((a, b) => {
+                            if (a.text > b.text) {
+                                return -1
+                            } else {
+                                return 1
+                            }
+                        }).slice(0, 5)
+                    ]
+                },
+                // techResult,
+                // shareResult,
                 {text: "关于", link: '/author'},
             ]
         }
