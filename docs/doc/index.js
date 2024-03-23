@@ -1,8 +1,49 @@
-import {deepTravDir} from '../utils'
+import path from 'path'
+import fs from 'fs'
+import {deepTravDir, parseMarkdownFile} from '../utils'
 
-// console.log('deepTravMarkdownFile', __dirname);
-const result = deepTravDir('/doc', __dirname, '')
-// console.log('Result: ', JSON.stringify(result, null, 2))
+console.log('deepTravMarkdownFile', path.join(__dirname, '/share'));
+
+function deepTrav2(linkPrefix, rootDir, relDir) {
+    const absDirPath = path.join(rootDir, relDir)
+    console.log('scanDir', absDirPath)
+    const result = {
+        text: '根目录',
+        items: []
+    }
+    result.items = []
+
+    fs.readdirSync(absDirPath).forEach(file => {
+        const fullPath = path.join(absDirPath, file);
+
+        if (fs.lstatSync(fullPath).isDirectory()) {
+            const subItem = deepTrav2(linkPrefix, rootDir, relDir + "/" + file);
+            subItem.text = file
+            if (subItem) {
+                result.items.push(subItem);
+            }
+
+        } else if (fullPath.endsWith('.md')) {
+            const item = {text: '', link: linkPrefix + relDir + '/' + file}
+
+            // 去掉后缀
+            item.link = item.link.substring(0, item.link.length - 3)
+            const meta = parseMarkdownFile(fullPath);
+            if (meta) {
+                item.text = meta.title;
+            }
+
+            result.items.push(item);
+        }
+    })
+
+    return result
+}
+
+const shareResult = deepTrav2('/doc', __dirname, '/share')
+shareResult.text = '分享'
+const techResult = deepTrav2('/doc', __dirname, '/tech')
+techResult.text = '技术'
 
 export default {
     getNav() {
@@ -10,8 +51,10 @@ export default {
         return {
             text: '随笔',
             items: [
-                {text: "技术", link: '/doc/tech'},
-                {text: "分享", link: '/doc/share',},
+                //{text: "技术", link: '/doc/tech'},
+                // {text: "分享", link: '/doc/share',},
+                techResult,
+                shareResult,
                 {text: "关于", link: '/author'},
             ]
         }
@@ -23,14 +66,16 @@ export default {
     getSidebar() {
         return {
             '/doc/tech': [
-                {text: "技术1"},
-                {text: "技术2"},
-                {text: "技术3"},
+                // {text: "技术1"},
+                // {text: "技术2"},
+                // {text: "技术3"},
+                ...techResult.items,
             ],
             '/doc/share': [
-                {text: "分享1"},
-                {text: "分享2"},
-                {text: "分享3"},
+                // {text: "分享1"},
+                // {text: "分享2"},
+                // {text: "分享3"},
+                ...shareResult.items,
             ],
         }
     }
