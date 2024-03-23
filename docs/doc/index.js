@@ -49,7 +49,6 @@ export default {
         return {
             text: '随笔',
             items: [
-                {text: "技术", link: '/doc/tech'},
                 {
                     text: "分享",
                     items: [
@@ -65,6 +64,7 @@ export default {
                 },
                 // techResult,
                 // shareResult,
+                {text: "技术", link: '/doc/tech'},
                 {text: "关于", link: '/author'},
             ]
         }
