@@ -10,3 +10,5 @@ table desc as "描述", apiType as "类型", url as "URL", system as "系统"
 from "wms/06_接口设计"
 where contains(file.name, "connector.")
 ```
+
+[agvTaskCancel](./connector.agvTaskCancel)
