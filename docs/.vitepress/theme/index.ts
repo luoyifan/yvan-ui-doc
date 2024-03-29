@@ -3,6 +3,8 @@ import {useData, useRoute} from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import "vitepress-markdown-timeline/dist/theme/index.css"
+import YvBeanSchema from './components/YvBeanSchema.vue'
+import YvCallOut from './components/YvCallOut.vue'
 
 console.log('DefaultTheme', DefaultTheme)
 
@@ -11,6 +13,8 @@ export default {
 
     enhanceApp({app}) {
         // 注册全局组件
+        app.component('YvCallOut', YvCallOut)
+        app.component('YvBeanSchema', YvBeanSchema)
     },
 
     Layout: () => {
