@@ -624,6 +624,11 @@ js-yaml@^4.1.0:
   dependencies:
     argparse "^2.0.1"
 
+lucide-vue-next@^0.363.0:
+  version "0.363.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/lucide-vue-next/-/lucide-vue-next-0.363.0.tgz#c838b274d04a98f59e22244a07f8692580794d64"
+  integrity sha512-dc5KgrXhCPMEzKz6voDVvxXkwEr7n+Q4b7qLyS2e3DTlH9GMFydS4fHoSvpZR/a5M7i1EOpFI8/BA8SPjAOwEQ==
+
 magic-string@^0.30.7:
   version "0.30.8"
   resolved "https://mirrors.cloud.tencent.com/npm/magic-string/-/magic-string-0.30.8.tgz#14e8624246d2bedba70d5462aa99ac9681844613"

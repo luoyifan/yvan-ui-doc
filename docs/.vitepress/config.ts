@@ -1,10 +1,13 @@
 import {defineConfig} from 'vitepress'
-// import wms from '../wms/index'
+import wms from '../wms/index'
 import yvanui from '../yvanui/index'
 import doc from '../doc/index'
 import timeline from "vitepress-markdown-timeline"
+import {applyPlugins} from "./theme/plugins";
 
 // refer https://vitepress.dev/reference/site-config for details
+// https://github.com/antfu/markdown-it-github-alerts
+// https://github.com/markdown-it/markdown-it-container
 export default defineConfig({
     lang: 'zh-CN',
     title: 'YvanUI',
@@ -27,13 +30,24 @@ export default defineConfig({
     //     console.log('transformHtml', code, id, context)
     // },
     themeConfig: {
+
         nav: [
             yvanui.getNav(),
-            // wms.getNav(),
+            wms.getNav(),
+            //@ts-ignore
             doc.getNav(),
         ],
 
         sidebar: {
+            'test': [
+                {
+                    text: 'test', collapsed: false,
+                    items: [
+                        {text: 'test', link: '/atest/1.md'},
+                    ]
+                },
+            ],
+
             '/yvanui/': yvanui.getSidebar(),
             // '/yvanui/': [
             //     {
@@ -52,7 +66,7 @@ export default defineConfig({
             // ],
 
             // 当用户位于 `config` 目录时，会显示此侧边栏
-            // '/wms/': wms.getSidebar(),
+            '/wms/': wms.getSidebar(),
             // '/wms/': [
             //     {
             //         text: 'inbound', collapsed: false,
@@ -117,7 +131,7 @@ export default defineConfig({
 
         //大纲显示2-3级标题
         outline: {
-            level: [2, 3],
+            level: [1, 2],
             label: '当前页大纲'
         },
 
@@ -143,88 +157,27 @@ export default defineConfig({
     markdown: {
         linkify: false,
         lineNumbers: true,
+        // highlight: function (str, lang) {
+        //     if (lang === 'beanSchema') {
+        //         // 将 str 中的双引号变成 \"
+        //         str = str.replace(/"/g, '\\"')
+        //             .replace(/\n/g, '\\n')
+        //         // let v = JSON.parse(str)
+        //         // v = JSON.stringify(v).replace(/"/g, '\\"')
+        //
+        //         // const ret = `<YvBeanSchema content="${str}" />`
+        //         // console.log(ret)
+        //         // const ret = `<div a="${str}" />`
+        //         const ret = 'a'
+        //         return ret
+        //     }
+        // },
         config: (md) => {
             md.use(timeline);
-            md.use((md) => {
-                let defaultRender = md.renderer.rules.text;
-                let inLineRender = md.renderer.rules.html_inline;
-
-                md.renderer.rules.text = (tokens, idx, options, env, self) => {
-                    const token = tokens[idx];
-
-                    if (token.content.indexOf('![[') >= 0 && token.content.indexOf(']]') >= 0) {
-                        // obsidian 图片格式转换
-                        // ![[Pasted image 20240315152420.png]]
-                        // 转换为
-                        // ![](./_assets/Pasted%20image%2020240315152420.png)
-
-                        const item = token.content;
-                        const imgName = item.substring(3, item.length - 2)
-                            .replace(/ /g, '%20')
-                        // console.log('imgName =', imgName)
-
-                        tokens[idx].content = `<img src="./_assets/${imgName}" alt="" loading="lazy">`
-                        return inLineRender(tokens, idx, options, env, self);
-
-                    } else if (token.content.indexOf('[[') >= 0 && token.content.indexOf(']]') >= 0) {
-                        // obsidian 外链转换
-                        // [[yvanui/01_base/02_bean_schema]]
-                        // 转换为
-                        // [02_bean_schema](/yvanui/01_base/02_bean_schema)
-                        // <a href="/yvanui/01_base/02_bean_schema.html">333</a>
-
-                        const item = token.content;
-                        const link = item.substring(2, item.length - 2)
-                        const linkArr = link.split('/')
-                        const text = linkArr[linkArr.length - 1]
-                        tokens[idx].content = `<a href="/${link}.html">${text}</a>`
-
-                        return inLineRender(tokens, idx, options, env, self);
-                    }
-
-                    return defaultRender(tokens, idx, options, env, self);
-                }
-            })
+            applyPlugins(md)
         },
         image: {
             lazyLoading: true
         },
     },
 });
-//
-// function VitePressPreprocessMdPlugin() {
-//     return {
-//         name: 'vitepress:preprocess-md',
-//         transform(code, id) {
-//             if (id.endsWith('.md')) {
-//
-//                 // code = code.replace(/<img/g, '<img loading="lazy"')
-//
-//                 // 将图片格式做转换
-//                 // ![[Pasted image 20240315152420.png]]
-//                 // 转换为
-//                 // ![](./_assets/Pasted%20image%2020240315152420.png)
-//                 code.match(/!\[\[([\s\S]*?)\]\]/g).forEach((item) => {
-//                     const imgName = item.substring(3, item.length - 2)
-//                         .replace(/ /g, '%20')
-//                     console.log('imgName =', item.substring(3, item.length - 2))
-//
-//                     if (imgName.indexOf('/') >= 0) {
-//                         // 图片中包含 / 符号, 转换为 ![](图片地址) 格式
-//                         // code = code.replace(item, `![](${imgName})`);
-//                         return;
-//                     }
-//
-//                     // 转换为 URLEncode 格式
-//                     // code = code.replace(item, `![](_assets/${imgName})`);
-//
-//                     //<img src="./_assets/Pasted%20image%2020240315152420.png" alt="" loading="lazy">
-//                     // code = code.replace(item, `<img src="./_assets/${imgName}" alt="" loading="lazy">`);
-//                 });
-//                 console.log('transform', id, code)
-//                 return {code, id}
-//             }
-//             return null
-//         }
-//     }
-// }
