@@ -46,7 +46,7 @@ function CallOutFn(md) {
     })
     md.renderer.rules.alert_open = function (tokens, idx) {
         const {title, type} = tokens[idx].meta
-        console.log('alertOpen', title, type)
+        // console.log('alertOpen', title, type)
         return `<YvCallOut type="${type}" title="${title}">`
     }
 }

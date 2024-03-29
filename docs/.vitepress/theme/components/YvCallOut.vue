@@ -13,7 +13,18 @@
 </template>
 <script>
 import {markRaw} from "vue"
-import {Table, Info, Cable, ComponentIcon, Workflow, PencilRuler, PackageSearch, BookA, ListIcon} from "lucide-vue-next"
+import {
+  Table,
+  Info,
+  Cable,
+  ComponentIcon,
+  Workflow,
+  PencilRuler,
+  PackageSearch,
+  BookA,
+  ListIcon,
+  ScrollText
+} from "lucide-vue-next"
 
 export default {
   props: {
@@ -54,6 +65,15 @@ export default {
       } else if (this.type === 'example') {
         return markRaw(ListIcon)
 
+      } else if (this.type === 'summary') {
+        return markRaw(ScrollText)
+
+      } else if (this.type === 'info') {
+        return markRaw(Info)
+
+      } else if (this.type === 'tip') {
+        return markRaw(Info)
+
       }
       console.error('未知的类型:' + this.type)
       return markRaw(Table)
@@ -86,6 +106,11 @@ export default {
 
 .callout[data-callout="info"] {
   --callout-color: 8, 109, 221;
+  --callout-icon: lucide-table;
+}
+
+.callout[data-callout="summary"] {
+  --callout-color: 0, 191, 188;
   --callout-icon: lucide-table;
 }
 

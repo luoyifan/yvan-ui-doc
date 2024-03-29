@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"0e455e9839e3226e","type":"file","file":"wms/09_数据库设计/db.bas_item.md","subpath":"#title","x":-380,"y":180,"width":276,"height":100},
+		{"id":"7b033e2bfb646e01","type":"file","file":"wms/09_数据库设计/db.bas_address.md","subpath":"#title","x":-380,"y":-120,"width":276,"height":101}
+	],
+	"edges":[]
+}
