@@ -4,9 +4,7 @@ desc: 系统字典项
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -30,4 +28,4 @@ tags:
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | update_by | varchar | 64 | 更新人 |  |  |  |
 | var_name | varchar | 255 | 变量名 |  |  |  |
-#wms/db/基础数据
+

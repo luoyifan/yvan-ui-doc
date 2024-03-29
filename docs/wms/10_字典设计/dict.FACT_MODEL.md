@@ -3,13 +3,9 @@ title: FACT_MODEL
 desc: 规则实体
 type: dict
 tags:
-  - wms
-  - dict
-  - dynamic
-  - sql_dynamic
+  - wms/dict
+  - wms/dict/dynamic
 ---
-#wms/dict/dynamic
-
 # title
 >[!dict] FACT_MODEL
 > 规则实体

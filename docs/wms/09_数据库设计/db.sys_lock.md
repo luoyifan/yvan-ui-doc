@@ -4,9 +4,7 @@ desc: 锁
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -18,4 +16,4 @@ tags:
 | --- | --- | --- | --- | --- | --- | --- |
 | lock_id | int8 |  | 锁ID |  |  |  |
 | lock_name | varchar | 255 | 锁名称 |  |  |  |
-#wms/db/基础数据
+

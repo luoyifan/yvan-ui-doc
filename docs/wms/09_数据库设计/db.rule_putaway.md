@@ -4,9 +4,7 @@ desc: 上架库位分配规则
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -27,4 +25,4 @@ tags:
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
 | rule_sort | int4 |  | 排序 |  |  |  |
 | rule_expr | varchar | 40960 | 匹配表达式 |  | √ |  |
-#wms/db/基础数据
+

@@ -4,9 +4,7 @@ desc: UI规则客户自定义表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -29,4 +27,4 @@ tags:
 | cust_ui | varchar | 40960 | 字段描述JSON |  |  |  |
 | is_hidden | varchar | 50 | 是否隐藏 |  |  | [[dict.IS_ENABLE]] |
 | is_required | varchar | 50 | 是否必填 |  |  | [[dict.IS_ENABLE]] |
-#wms/db/基础数据
+

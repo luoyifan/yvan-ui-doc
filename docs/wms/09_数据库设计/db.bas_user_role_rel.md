@@ -4,9 +4,7 @@ desc: 用户角色关系表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -21,4 +19,4 @@ tags:
 | wh_id | int8 |  | 仓库ID | √ | √ |  |
 | create_by | varchar | 64 | 创建者 |  |  |  |
 | create_at | timestamptz |  | 建立时间 |  |  |  |
-#wms/db/基础数据
+

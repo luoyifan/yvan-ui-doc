@@ -4,9 +4,7 @@ desc: 规则物料表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -24,4 +22,4 @@ tags:
 | update_by | varchar | 255 | 修改者 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | item_id | int8 |  | 物料id |  | √ |  |
-#wms/db/基础数据
+

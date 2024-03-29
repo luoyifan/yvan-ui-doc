@@ -4,9 +4,7 @@ desc: 用户权限信息缓存表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -22,4 +20,4 @@ tags:
 | security_context | varchar | 4000 | 用户安全信息(安全上下文) |  | √ |  |
 | create_at | timestamptz |  | 创建时间 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+

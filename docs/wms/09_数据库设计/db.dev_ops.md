@@ -4,9 +4,7 @@ desc: 运维OPS
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -20,4 +18,4 @@ tags:
 | name | varchar | 128 | 操作名称 |  | √ |  |
 | cmd_tpl | varchar | 2048 | 命令行模板 |  |  |  |
 | host | varchar | 64 | 远程机器 |  |  |  |
-#wms/db/基础数据
+

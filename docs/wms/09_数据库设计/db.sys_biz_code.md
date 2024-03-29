@@ -4,9 +4,7 @@ desc: 业务编码表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -27,4 +25,4 @@ tags:
 | create_by | varchar | 64 |  |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | update_by | varchar | 64 |  |  | √ |  |
-#wms/db/基础数据
+

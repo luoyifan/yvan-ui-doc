@@ -4,9 +4,7 @@ desc: 任务触发器日志
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -31,4 +29,4 @@ tags:
 | mis_fired | int2 |  | 是否错过了触发，0：否，1：是 |  | √ |  |
 | trigger_msg | varchar | 511 | 触发器消息 |  |  |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
-#wms/db/基础数据
+

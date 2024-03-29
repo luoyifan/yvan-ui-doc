@@ -4,9 +4,7 @@ desc: 任务执行日志
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -32,4 +30,4 @@ tags:
 | run_count | int8 |  | 执行次数 |  | √ |  |
 | before_job_data | text |  | 执行前的任务数据 |  |  |  |
 | after_job_data | text |  | 执行后的任务数据 |  |  |  |
-#wms/db/基础数据
+

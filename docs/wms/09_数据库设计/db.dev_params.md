@@ -4,9 +4,7 @@ desc: 二开配置表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -18,4 +16,4 @@ tags:
 | --- | --- | --- | --- | --- | --- | --- |
 | key | varchar | 255 | 配置项 | √ | √ |  |
 | value | varchar | 255 | 配置内容 |  | √ |  |
-#wms/db/基础数据
+

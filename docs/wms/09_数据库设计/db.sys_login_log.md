@@ -4,9 +4,7 @@ desc: 登录日志
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | request_data | varchar | 4000 | 登录请求数据 |  | √ |  |
 | jwt_token_id | int8 |  | jwt: token id |  |  |  |
 | create_at | timestamptz |  | 创建时间 |  | √ |  |
-#wms/db/基础数据
+

@@ -4,9 +4,7 @@ desc:
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -18,4 +16,4 @@ tags:
 | --- | --- | --- | --- | --- | --- | --- |
 | resource_id | varchar | 255 |  | √ | √ |  |
 | role_id | int8 |  |  | √ | √ |  |
-#wms/db/基础数据
+

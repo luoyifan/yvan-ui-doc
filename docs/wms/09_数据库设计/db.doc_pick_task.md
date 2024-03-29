@@ -4,9 +4,7 @@ desc: 拣货任务
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -25,7 +23,7 @@ tags:
 | order_biz_type | varchar | 50 | 订单业务类型 |  | √ |  |
 | out_status | varchar | 50 | 出库状态 |  | √ |  |
 | wave_id | int8 |  | 波次ID |  | √ |  |
-| is_active | varchar | 50 | 是否激活 |  | √ | [[dict.IS_ENABLE]] |
+| is_active | varchar | 50 | 是否激活 |  | √ | [[dict.YESNO]] |
 | obtain_staff_id | int8 |  | 索取职员ID |  | √ |  |
 | obtain_time | timestamptz |  | 索取时间 |  |  |  |
 | confirm_staff_id | int8 |  | 确认职员ID |  | √ |  |
@@ -37,4 +35,4 @@ tags:
 | create_at | timestamptz |  | 创建时间 |  | √ |  |
 | update_by | varchar | 64 | 更新人 |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
-#wms/db/基础数据
+

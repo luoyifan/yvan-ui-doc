@@ -4,9 +4,7 @@ desc: 设备指令表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -46,4 +44,4 @@ tags:
 | container_type | varchar | 50 | 容器类型 |  | √ |  |
 | container_num | int4 |  | 容器数量(空容器时大于0) |  | √ |  |
 | led_msg | varchar | 255 | LED屏显示信息 |  | √ |  |
-#wms/db/基础数据
+

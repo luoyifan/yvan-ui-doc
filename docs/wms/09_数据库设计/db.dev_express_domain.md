@@ -4,9 +4,7 @@ desc: 表达式业务域定义
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -23,4 +21,4 @@ tags:
 | update_by | varchar | 64 | 更新人 |  |  |  |
 | create_at | timestamptz |  | 创建时间 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+

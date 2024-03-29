@@ -4,9 +4,7 @@ desc: 拣货任务明细
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -39,7 +37,7 @@ tags:
 | obtain_time | timestamptz |  | 索取时间 |  |  |  |
 | confirm_staff_id | int8 |  | 确认人ID |  | √ |  |
 | confirm_time | timestamptz |  | 确认时间 |  |  |  |
-| is_active | varchar | 50 | 是否激活 |  | √ | [[dict.IS_ENABLE]] |
+| is_active | varchar | 50 | 是否激活 |  | √ | [[dict.YESNO]] |
 | wave_id | int8 |  | 波次ID |  | √ |  |
 | owner_id | int8 |  | 货主id |  | √ |  |
 | wh_id | int8 |  | 仓库id |  | √ |  |
@@ -47,4 +45,4 @@ tags:
 | create_at | timestamptz |  | 创建时间 |  |  |  |
 | update_by | varchar | 64 | 更新人 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+

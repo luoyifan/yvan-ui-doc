@@ -4,9 +4,7 @@ desc: 用户
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | org_id | int8 |  | 组织机构ID |  |  |  |
 | staff_no | varchar | 255 | 职员工号 |  |  |  |
-#wms/db/基础数据
+

@@ -4,9 +4,7 @@ desc: wcs模拟器任务表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -34,4 +32,4 @@ tags:
 | create_at | timestamptz |  | 建立时间 |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
 | is_uploade | varchar | 50 | 是否上传 |  | √ |  |
-#wms/db/基础数据
+

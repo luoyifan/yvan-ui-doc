@@ -4,9 +4,7 @@ desc: 调度器
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | description | varchar | 511 | 描述 |  |  |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
 | update_at | timestamp |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+

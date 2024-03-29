@@ -4,9 +4,7 @@ desc: 货位
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -53,4 +51,4 @@ tags:
 | loc_volume_total | numeric |  | 体积 |  | √ |  |
 | loc_remark | varchar | 255 | 备注 |  | √ |  |
 | region_id | int8 |  | 区域ID |  |  |  |
-#wms/db/基础数据
+

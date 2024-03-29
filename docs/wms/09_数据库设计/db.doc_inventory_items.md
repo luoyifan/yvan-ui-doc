@@ -4,9 +4,7 @@ desc: 库存盘点明细
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -34,4 +32,7 @@ tags:
 | create_at | timestamptz |  | 建立时间 |  |  |  |
 | update_by | varchar | 64 | 修改者 |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+| parent_inventory_id | int8 |  | 父级盘点ID |  |  |  |
+| parent_inventory_line_no | int4 |  | 父级盘点单行号 |  |  |  |
+| diff_id | int8 |  | 盘点审核ID |  |  |  |
+

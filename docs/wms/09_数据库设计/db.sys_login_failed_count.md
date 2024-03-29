@@ -4,9 +4,7 @@ desc: 用户连续登录失败次数
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -24,4 +22,4 @@ tags:
 | delete_flag | varchar | 8 | 数据删除标志: 0:未删除，1:已删除 |  | √ | [[dict.IS_ENABLE]] |
 | create_at | timestamptz |  | 创建时间 |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
-#wms/db/基础数据
+

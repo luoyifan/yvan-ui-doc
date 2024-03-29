@@ -4,9 +4,7 @@ desc: 领域规则字段
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -27,4 +25,4 @@ tags:
 | create_by | varchar | 64 | 创建者 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | update_by | varchar | 64 | 修改者 |  |  |  |
-#wms/db/基础数据
+

@@ -4,9 +4,7 @@ desc: 登录
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -28,4 +26,4 @@ tags:
 | update_by | varchar | 64 | 修改者 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | telephone | varchar | 16 | 手机号码 |  |  |  |
-#wms/db/基础数据
+

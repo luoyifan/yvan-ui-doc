@@ -4,9 +4,7 @@ desc: 调度器事件日志
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -22,4 +20,4 @@ tags:
 | event_name | varchar | 63 | 事件名称 |  | √ |  |
 | log_data | text |  | 事件日志数据 |  |  |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
-#wms/db/基础数据
+

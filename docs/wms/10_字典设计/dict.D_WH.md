@@ -3,13 +3,9 @@ title: D_WH
 desc: 仓库
 type: dict
 tags:
-  - wms
-  - dict
-  - dynamic
-  - sql_dynamic
+  - wms/dict
+  - wms/dict/dynamic
 ---
-#wms/dict/dynamic
-
 # title
 >[!dict] D_WH
 > 仓库

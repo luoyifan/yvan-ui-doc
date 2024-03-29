@@ -4,9 +4,7 @@ desc: 盘点属性规则明细
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -28,4 +26,4 @@ tags:
 | update_by | varchar | 255 | 更新人 |  |  |  |
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | detail | varchar | 40960 | 规则详情 |  |  |  |
-#wms/db/基础数据
+

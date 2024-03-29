@@ -4,9 +4,7 @@ desc: 操作日志分类提取表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -25,4 +23,4 @@ tags:
 | success | int4 |  | 1=success是true情况下命中 / 0=success是false情况下命中 |  |  |  |
 | remark_disp | varchar | 255 | 形成操作备注字段的toString字符串描述 |  |  |  |
 | sort | int4 |  | 排序 |  |  |  |
-#wms/db/基础数据
+

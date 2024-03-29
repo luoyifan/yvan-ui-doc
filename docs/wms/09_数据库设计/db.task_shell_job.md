@@ -4,9 +4,7 @@ desc: js脚本任务
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | read_only | int2 |  | 读写权限：0-可读可写，1-只读 |  | √ |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
 | update_at | timestamp |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+

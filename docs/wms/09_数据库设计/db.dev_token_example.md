@@ -4,9 +4,7 @@ desc: 压力测试用的授权示例
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -20,4 +18,4 @@ tags:
 | user_name | varchar | 255 | 用户名 | √ | √ |  |
 | token | varchar | 4000 | 授权 |  |  |  |
 | test_use_type | numeric |  | 测试用途 |  |  |  |
-#wms/db/基础数据
+

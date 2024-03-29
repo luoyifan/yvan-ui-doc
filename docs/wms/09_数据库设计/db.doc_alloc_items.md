@@ -4,9 +4,7 @@ desc: 分配明细表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -34,7 +32,7 @@ tags:
 | qty | numeric |  | 分配数量 |  | √ |  |
 | cancel_qty | numeric |  | 取消数量 |  | √ |  |
 | is_merge | varchar | 50 | 是否合并 |  | √ |  |
-| is_active | varchar | 50 | 是否激活 |  | √ | [[dict.IS_ENABLE]] |
+| is_active | varchar | 50 | 是否激活 |  | √ | [[dict.YESNO]] |
 | rep_put_loc_id | int8 |  | 补货上架货位 |  | √ |  |
 | pre_alloc_id | int8 |  | 预分配ID |  | √ |  |
 | rep_alloc_id | int8 |  | 关联补货ID |  | √ |  |
@@ -47,4 +45,4 @@ tags:
 | create_at | timestamptz |  | 建立时间 |  | √ |  |
 | update_by | varchar | 64 | 修改者 |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
-#wms/db/基础数据
+

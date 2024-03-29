@@ -4,9 +4,7 @@ desc: 表达式构建
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -22,4 +20,4 @@ tags:
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | form_name | varchar | 255 | 表达式名 | √ | √ |  |
 | form_type | int4 |  | 类型 |  |  |  |
-#wms/db/基础数据
+

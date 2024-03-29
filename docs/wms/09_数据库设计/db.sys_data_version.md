@@ -4,9 +4,7 @@ desc: 数据版本
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -18,4 +16,4 @@ tags:
 | --- | --- | --- | --- | --- | --- | --- |
 | data_name | varchar | 255 | 数据名称 | √ | √ |  |
 | data_version | int8 |  | 数据版本号(时间戳) |  | √ |  |
-#wms/db/基础数据
+

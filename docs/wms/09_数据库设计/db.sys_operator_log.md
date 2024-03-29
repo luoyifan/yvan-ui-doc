@@ -4,9 +4,7 @@ desc: 操作日志
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -27,4 +25,4 @@ tags:
 | log_data_before | varchar | 40960 | 数据修改前 |  | √ |  |
 | log_data_after | varchar | 40960 | 数据修改后 |  | √ |  |
 | remark | varchar | 255 | 备注 |  | √ |  |
-#wms/db/基础数据
+

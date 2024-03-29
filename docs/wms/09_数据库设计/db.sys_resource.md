@@ -4,9 +4,7 @@ desc: 系统菜单表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -32,4 +30,4 @@ tags:
 | open_target | varchar | 255 | 打开目标 |  |  |  |
 | resource_url | varchar | 255 | 资源页面目标 |  |  |  |
 | remark | varchar | 255 | 备注 |  |  |  |
-#wms/db/基础数据
+

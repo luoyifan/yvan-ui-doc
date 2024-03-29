@@ -4,9 +4,7 @@ desc: 工作流业务实例映射表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -22,4 +20,4 @@ tags:
 | version | int4 |  | 流程版本号 |  |  |  |
 | version_tag | varchar | 255 | 流程版本标记 |  |  |  |
 | process_define_id | varchar | 255 | 流程定义ID |  |  |  |
-#wms/db/基础数据
+

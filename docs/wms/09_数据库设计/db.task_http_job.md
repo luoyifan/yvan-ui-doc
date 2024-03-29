@@ -4,9 +4,7 @@ desc: Http任务
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -24,4 +22,4 @@ tags:
 | request_data | text |  | Http请求数据json格式，包含：params、headers、body |  |  |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
 | update_at | timestamp |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+

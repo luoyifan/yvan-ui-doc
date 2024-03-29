@@ -4,9 +4,7 @@ desc: 库存批属性资料
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -30,4 +28,4 @@ tags:
 | project_code | varchar | 255 | 项目号 |  |  |  |
 | version | varchar | 255 | 版本号 |  |  |  |
 | inventory_loc | varchar | 255 | 库存地点 |  |  |  |
-#wms/db/基础数据
+

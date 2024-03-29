@@ -4,9 +4,7 @@ desc: 产品包装控制属性
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -32,9 +30,9 @@ tags:
 | pack_height | numeric |  | 高 |  | √ |  |
 | pack_volume | numeric |  | 体积 |  | √ |  |
 | pack_weight | numeric |  | 重量 |  | √ |  |
-| is_enable | varchar | 50 | 是否启用 |  | √ | [[dict.IS_ENABLE]] |
+| is_enable | varchar | 50 | 是否启用 |  | √ | [[dict.YESNO]] |
 | create_by | varchar | 64 | 创建者 |  | √ |  |
 | create_at | timestamptz |  | 建立时间 |  | √ |  |
 | update_by | varchar | 64 | 修改者 |  | √ |  |
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
-#wms/db/基础数据
+

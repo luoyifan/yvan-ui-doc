@@ -4,9 +4,7 @@ desc: 条码管控表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | update_at | timestamptz |  | 修改时间 |  |  |  |
 | remark | varchar | 255 | 备注 |  |  |  |
 | project_id | int8 |  | 项目id |  | √ |  |
-#wms/db/基础数据
+

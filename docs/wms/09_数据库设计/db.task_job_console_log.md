@@ -4,9 +4,7 @@ desc: 任务控制台日志
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -24,4 +22,4 @@ tags:
 | line_num | int4 |  | 日志行号 |  | √ |  |
 | log | text |  | 日志内容 |  |  |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
-#wms/db/基础数据
+

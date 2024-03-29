@@ -4,9 +4,7 @@ desc: 批属性规则
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | update_at | timestamptz |  | 更新时间 |  | √ |  |
 | lot_rule_expr | varchar | 1024 | 适配规则表达式 |  |  |  |
 | rule_sort | int4 |  | 规则排序 |  | √ |  |
-#wms/db/基础数据
+

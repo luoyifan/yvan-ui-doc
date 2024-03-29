@@ -4,9 +4,7 @@ desc: 采购订单表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -42,9 +40,9 @@ tags:
 | latest_receiving_time | timestamptz |  | 最晚收货时间 |  |  |  |
 | appendix | varchar | 40960 | 附加信息 |  |  |  |
 | delivery_time | timestamptz |  | 交货时间 |  |  |  |
-| is_enable | varchar | 50 | 是否启用 |  |  | [[dict.IS_ENABLE]] |
+| is_enable | varchar | 50 | 是否启用 |  |  | [[dict.YESNO]] |
 | create_by | varchar | 64 | 创建者 |  |  |  |
 | create_at | timestamptz |  | 建立时间 |  |  |  |
 | update_by | varchar | 64 | 修改者 |  |  |  |
 | update_at | timestamptz |  | 修改时间 |  |  |  |
-#wms/db/基础数据
+

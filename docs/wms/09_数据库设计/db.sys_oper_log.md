@@ -4,9 +4,7 @@ desc: 操作日志表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -25,4 +23,4 @@ tags:
 | log_user_name | varchar | 60 | 操作人 |  |  |  |
 | log_at | timestamptz |  | 日志发生时间 |  |  |  |
 | log_level | int4 |  | 日志级别(1=debug/2=info/3=warn/4=error/5=fail) |  |  |  |
-#wms/db/基础数据
+

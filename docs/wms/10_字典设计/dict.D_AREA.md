@@ -3,13 +3,9 @@ title: D_AREA
 desc: 库区
 type: dict
 tags:
-  - wms
-  - dict
-  - dynamic
-  - sql_dynamic
+  - wms/dict
+  - wms/dict/dynamic
 ---
-#wms/dict/dynamic
-
 # title
 >[!dict] D_AREA
 > 库区

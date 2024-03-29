@@ -4,9 +4,7 @@ desc: 打印任务表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -31,4 +29,4 @@ tags:
 | create_at | timestamptz |  | 创建时间 |  |  |  |
 | update_by | varchar | 64 | 修改者 |  |  |  |
 | update_at | timestamptz |  | 修改时间 |  |  |  |
-#wms/db/基础数据
+

@@ -1,4 +1,5 @@
 import {deepTravDir} from '../utils'
+import _ from 'lodash'
 
 // console.log('deepTravMarkdownFile', __dirname);
 const result = deepTravDir('/wms', __dirname, '')
@@ -31,7 +32,7 @@ export default {
      * @return {[{link: string, text: string}]}
      */
     getSidebar() {
-        return result.items.map(item => {
+        const ret = result.items.map(item => {
             if (item.items) {
                 return {
                     collapsed: false,
@@ -40,6 +41,15 @@ export default {
             }
             return item
         });
+
+        const tmpItems = _.find(ret, {text: '数据库设计'}).items
+        // 删到只剩下一个
+        _.remove(tmpItems, (item, index) => index > 0)
+
+        const tmpItems2 = _.find(ret, {text: '字典设计'}).items
+        _.remove(tmpItems2, (item, index) => index > 0)
+
+        return ret
     }
 }
 

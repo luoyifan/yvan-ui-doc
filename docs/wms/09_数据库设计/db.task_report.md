@@ -4,9 +4,7 @@ desc: 任务执行报表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -23,4 +21,4 @@ tags:
 | job_err_count | int8 |  | job 运行错误次数 |  | √ |  |
 | trigger_count | int8 |  | 触发总次数 |  | √ |  |
 | misfire_count | int8 |  | 错过触发次数 |  | √ |  |
-#wms/db/基础数据
+

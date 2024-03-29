@@ -4,9 +4,7 @@ desc: 设备指令关联信息
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -26,4 +24,4 @@ tags:
 | update_at | timestamptz |  | 更新时间 |  |  |  |
 | doc_table_name | varchar | 255 | 关联业务表名称 |  | √ |  |
 | bpmn_biz_key | varchar | 255 | 工作流业务号 |  | √ |  |
-#wms/db/基础数据
+

@@ -4,9 +4,7 @@ desc: 系统应用集
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -27,4 +25,4 @@ tags:
 | is_show | varchar | 50 | 是否展示 |  | √ | [[dict.IS_ENABLE]] |
 | external_url | varchar | 255 | 外部系统URL |  |  |  |
 | open_target | varchar | 20 | 打开目标 |  |  |  |
-#wms/db/基础数据
+

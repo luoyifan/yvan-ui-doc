@@ -4,9 +4,7 @@ desc: 条码管控详情表
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -44,5 +42,5 @@ tags:
 | pdaupn3 | varchar | 50 | PDA串码3 |  |  |  |
 | pdaupn4 | varchar | 50 | PDA串码4 |  |  |  |
 | pdaupn5 | varchar | 50 | PDA串码5 |  |  |  |
-| is_all_items | varchar | 50 | 适用全部物料 |  |  | [[dict.IS_ENABLE]] |
-#wms/db/基础数据
+| is_all_items | varchar | 50 | 适用全部物料 |  |  | [[dict.YESNO]] |
+

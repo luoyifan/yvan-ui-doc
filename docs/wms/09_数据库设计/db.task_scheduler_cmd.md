@@ -4,9 +4,7 @@ desc: 调度器指令
 category: 基础数据
 type: db
 tags:
-  - wms
-  - db
-  - 基础数据
+  - wms/db/基础数据
 ---
 
 # title
@@ -23,4 +21,4 @@ tags:
 | state | int2 |  | 指令执行状态，0：未执行，1：执行中，2：执行完成 |  | √ |  |
 | create_at | timestamp |  | 创建时间 |  | √ |  |
 | update_at | timestamp |  | 更新时间 |  |  |  |
-#wms/db/基础数据
+
