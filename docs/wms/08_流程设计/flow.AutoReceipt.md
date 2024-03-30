@@ -1,7 +1,8 @@
 ---
-title: AutoReceipt
+title: 顺德大参林自动收货
 desc: 顺德大参林自动收货
 type: flow
+navIgnore: false
 tags:
   - wms/flow/AutoReceipt
 ---

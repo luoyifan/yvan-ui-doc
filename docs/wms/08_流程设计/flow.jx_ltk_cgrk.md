@@ -1,7 +1,8 @@
 ---
-title: jx_ltk_cgrk
+title: 嘉兴-立体库-采购入库
 desc: 嘉兴-立体库-采购入库
 type: flow
+navIgnore: false
 tags:
   - wms/flow/jx_ltk_cgrk
 ---

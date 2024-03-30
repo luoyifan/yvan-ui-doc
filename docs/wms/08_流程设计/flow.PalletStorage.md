@@ -1,7 +1,8 @@
 ---
-title: PalletStorage
+title: 托盘立库
 desc: 托盘立库
 type: flow
+navIgnore: false
 tags:
   - wms/flow/PalletStorage
 ---

@@ -2,6 +2,7 @@
 title: test2
 desc: test2
 type: flow
+navIgnore: false
 tags:
   - wms/flow/test2
 ---

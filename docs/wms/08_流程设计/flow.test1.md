@@ -1,7 +1,8 @@
 ---
-title: test1
+title: 测试1
 desc: 测试1
 type: flow
+navIgnore: false
 tags:
   - wms/flow/test1
 ---

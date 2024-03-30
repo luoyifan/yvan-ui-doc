@@ -1,7 +1,8 @@
 ---
-title: TestReceipt
+title: 测试收货
 desc: 测试收货
 type: flow
+navIgnore: false
 tags:
   - wms/flow/TestReceipt
 ---

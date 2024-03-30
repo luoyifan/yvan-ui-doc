@@ -1,6 +1,6 @@
 ---
-title: AutoReceipt
-desc: 顺德大参林自动收货
+title: a
+desc: a
 type: flow
 tags:
   - wms/flow/AutoReceipt
@@ -22,4 +22,3 @@ tags:
 ```bpmn
 url: [[./AutoReceipt.xml]]
 ```
-

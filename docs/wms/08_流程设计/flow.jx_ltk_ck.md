@@ -1,7 +1,8 @@
 ---
-title: jx_ltk_ck
+title: 嘉兴-立体库-出库
 desc: 嘉兴-立体库-出库
 type: flow
+navIgnore: false
 tags:
   - wms/flow/jx_ltk_ck
 ---

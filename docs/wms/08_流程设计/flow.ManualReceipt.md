@@ -1,7 +1,8 @@
 ---
-title: ManualReceipt
+title: 顺德大参林人工收货
 desc: 顺德大参林人工收货
 type: flow
+navIgnore: false
 tags:
   - wms/flow/ManualReceipt
 ---
