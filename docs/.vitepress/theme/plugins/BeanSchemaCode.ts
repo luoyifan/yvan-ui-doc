@@ -22,6 +22,10 @@ function BeanSchemaCode(md) {
             // 将双引号变成 &quot;
             let str = rawCode.replace(/"/g, '&quot;')
             return `<YvBeanSchema content="${str}" />`
+        } else if (token.info === 'dataview') {
+            return ''
+        } else if (token.info === 'bpmn') {
+            return ''
         }
         return fenceDefault(...args)
     }
