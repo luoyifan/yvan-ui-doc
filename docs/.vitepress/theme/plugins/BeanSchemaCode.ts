@@ -26,6 +26,8 @@ function BeanSchemaCode(md) {
             return ''
         } else if (token.info === 'bpmn') {
             return ''
+        } else if (token.info === 'ignore') {
+            return ''
         }
         return fenceDefault(...args)
     }
