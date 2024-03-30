@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
-    "lucide-vue-next": "^0.363.0",
     "vitepress-markdown-timeline": "^1.2.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-rc.45"
+    "vitepress": "^1.0.0-rc.45",
+    "lucide-vue-next": "^0.363.0"
   }
 }
