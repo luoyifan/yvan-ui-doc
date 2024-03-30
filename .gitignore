@@ -49,7 +49,6 @@ out/
 # NetBeans
 /nbproject/private/
 /nbbuild/
-/dist/
 /dist_pda/
 /nbdist/
 /.nb-gradle/
