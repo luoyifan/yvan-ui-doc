@@ -6,6 +6,7 @@ apiType: External
 system: MFC
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /mfc/alkTaskCancel
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/mfc/alkTaskCancel
 ---
 
-# title
+### 3.3.3-多穿任务取消
 > [!connector] URL: /mfc/alkTaskCancel
 > 描述: 3.3.3-多穿任务取消
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 78486cfc-8227-499d-a287-161ea858e257
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -81,7 +82,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

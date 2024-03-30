@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wcs/asrsPalletTaskRequest
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wcs/asrsPalletTaskRequest
 ---
 
-# title
+### 4.1.2-托盘搬运任务请求-设备回调
 > [!connector] URL: /wcs/asrsPalletTaskRequest
 > 描述: 4.1.2-托盘搬运任务请求-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 0aeb3ee5-bcf4-4930-b76b-9a3434b818d9
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -77,7 +78,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

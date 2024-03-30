@@ -6,6 +6,7 @@ apiType: External
 system: MFC
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /mfc/alkTaskAdd
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/mfc/alkTaskAdd
 ---
 
-# title
+### 3.3.1-多穿任务添加
 > [!connector] URL: /mfc/alkTaskAdd
 > 描述: 3.3.1-多穿任务添加
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: a15d3265-eeb4-4c60-8327-d2af58700777
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -95,7 +96,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

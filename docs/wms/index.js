@@ -34,26 +34,26 @@ export default {
         const ret = result.items.map(item => {
             if (item.items) {
                 return {
-                    collapsed: false,
+                    collapsed: true,
                     ...item,
                 }
             }
             return item
         });
 
-        ret.forEach(item => {
-            if (item.text === '数据库设计') {
-                item.items.splice(1, item.items.size - 1)
-                return false
-            }
-        })
-
-        ret.forEach(item => {
-            if (item.text === '字典设计') {
-                item.items.splice(1, item.items.size - 1)
-                return false
-            }
-        })
+        // ret.forEach(item => {
+        //     if (item.text === '数据库设计') {
+        //         item.items.splice(1, item.items.size - 1)
+        //         return false
+        //     }
+        // })
+        //
+        // ret.forEach(item => {
+        //     if (item.text === '字典设计') {
+        //         item.items.splice(1, item.items.size - 1)
+        //         return false
+        //     }
+        // })
 
         return ret
     }

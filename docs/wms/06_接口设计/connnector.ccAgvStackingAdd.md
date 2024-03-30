@@ -6,6 +6,7 @@ apiType: External
 system: RCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ccAgvStackingAdd
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ccAgvStackingAdd
 ---
 
-# title
+### 3.6.2-托盘叠盘任务添加
 > [!connector] URL: /rcs/ccAgvStackingAdd
 > 描述: 3.6.2-托盘叠盘任务添加
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 36878c47-dec2-4774-a463-002347a3fd15
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -95,7 +96,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

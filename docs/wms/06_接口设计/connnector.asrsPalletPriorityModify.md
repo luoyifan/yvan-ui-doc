@@ -6,6 +6,7 @@ apiType: External
 system: WCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wcs/asrsPalletPriorityModify
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wcs/asrsPalletPriorityModify
 ---
 
-# title
+### 3.1.2-托盘任务优先级调整
 > [!connector] URL: /wcs/asrsPalletPriorityModify
 > 描述: 3.1.2-托盘任务优先级调整
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: b9f25a21-c364-4efa-888a-0c01c1ba00b6
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -83,7 +84,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ctuTaskCallback
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ctuTaskCallback
 ---
 
-# title
+### 4.7.1-任务状态反馈-设备回调
 > [!connector] URL: /rcs/ctuTaskCallback
 > 描述: 4.7.1-任务状态反馈-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: cfb5fc6c-57e0-4e30-8df5-b9ea314173ff
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -136,7 +137,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

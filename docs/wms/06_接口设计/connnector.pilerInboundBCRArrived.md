@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/Test2@pilerInboundBCRArrived
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/Test2@pilerInboundBCRArrived
 ---
 
-# title
+### 2.1.3-嘉兴-立体库-到达托盘立体库入库口
 > [!connector] URL: /wms/Test2@pilerInboundBCRArrived
 > 描述: 2.1.3-嘉兴-立体库-到达托盘立体库入库口
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: f22cecd9-6826-4487-956f-69ecd8c32e6a
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -40,7 +41,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

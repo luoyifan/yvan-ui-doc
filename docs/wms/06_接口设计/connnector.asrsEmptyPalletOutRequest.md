@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wcs/asrsEmptyPalletOutRequest
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wcs/asrsEmptyPalletOutRequest
 ---
 
-# title
+### 4.1.3-拆盘机空托盘组补给请求-设备回调
 > [!connector] URL: /wcs/asrsEmptyPalletOutRequest
 > 描述: 4.1.3-拆盘机空托盘组补给请求-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: c92ead14-70b4-4aed-a8b3-6c7cb8a2f15a
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -71,7 +72,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

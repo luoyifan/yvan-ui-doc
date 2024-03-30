@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ccAgvTaskCallback
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ccAgvTaskCallback
 ---
 
-# title
+### 4.6.1-侧叉任务状态反馈-设备回调
 > [!connector] URL: /rcs/ccAgvTaskCallback
 > 描述: 4.6.1-侧叉任务状态反馈-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 373c2fc5-a52e-4e93-9a20-76e8d4ff9550
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -108,7 +109,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

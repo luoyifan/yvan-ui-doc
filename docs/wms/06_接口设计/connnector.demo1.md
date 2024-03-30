@@ -6,6 +6,7 @@ apiType: Method
 system: WMS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/Test2@demo1
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/Test2@demo1
 ---
 
-# title
+### 嘉兴-立体库-DEMO1
 > [!connector] URL: /wms/Test2@demo1
 > 描述: 嘉兴-立体库-DEMO1
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 6564e088-cf5e-4039-a40e-239082d98b77
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -35,7 +36,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

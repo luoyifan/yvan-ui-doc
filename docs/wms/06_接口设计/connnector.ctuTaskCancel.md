@@ -6,6 +6,7 @@ apiType: External
 system: RCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ctuTaskCancel
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ctuTaskCancel
 ---
 
-# title
+### 3.7.3-料箱搬运任务取消
 > [!connector] URL: /rcs/ctuTaskCancel
 > 描述: 3.7.3-料箱搬运任务取消
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 260230a6-2577-4c23-b383-0a1ae65cc716
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -81,7 +82,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

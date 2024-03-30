@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/agvTaskCallback
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/agvTaskCallback
 ---
 
-# title
+### 4.5.1-任务状态反馈-设备回调
 > [!connector] URL: /rcs/agvTaskCallback
 > 描述: 4.5.1-任务状态反馈-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 60c5df51-b314-48a4-96e7-2d6cfb7d8f2c
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -108,7 +109,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

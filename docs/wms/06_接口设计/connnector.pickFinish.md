@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/Test3@pickFinish
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/Test3@pickFinish
 ---
 
-# title
+### 2.2.4-拣货完成
 > [!connector] URL: /wms/Test3@pickFinish
 > 描述: 2.2.4-拣货完成
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 756362f9-9b22-46e1-86f5-d180e014637e
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -39,7 +40,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

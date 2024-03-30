@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/pesPalletTaskCallback
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/pesPalletTaskCallback
 ---
 
-# title
+### 4.2.2-任务状态反馈-设备回调
 > [!connector] URL: /rcs/pesPalletTaskCallback
 > 描述: 4.2.2-任务状态反馈-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 61ae9653-8d5c-412a-b097-daf277b2ec01
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -108,7 +109,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

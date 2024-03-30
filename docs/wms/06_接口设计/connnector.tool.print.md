@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/tool/BpmnUtils@print
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/tool/BpmnUtils@print
 ---
 
-# title
+### 1.5.2-打印调试信息
 > [!connector] URL: /wms/tool/BpmnUtils@print
 > 描述: 1.5.2-打印调试信息
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 9c115657-5212-42d4-a4c9-ca8c95f1ee6f
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -35,7 +36,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

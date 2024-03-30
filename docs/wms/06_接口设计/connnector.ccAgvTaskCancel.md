@@ -6,6 +6,7 @@ apiType: External
 system: RCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ccAgvTaskCancel
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ccAgvTaskCancel
 ---
 
-# title
+### 3.6.4-托盘搬运任务取消
 > [!connector] URL: /rcs/ccAgvTaskCancel
 > 描述: 3.6.4-托盘搬运任务取消
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 3811c547-b3f8-4547-bf61-c2e9166c52f8
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -81,7 +82,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

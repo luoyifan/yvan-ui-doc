@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/pesPalletTaskRequest
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/pesPalletTaskRequest
 ---
 
-# title
+### 4.2.1-托盘搬运任务请求-设备回调
 > [!connector] URL: /rcs/pesPalletTaskRequest
 > 描述: 4.2.1-托盘搬运任务请求-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: e3fa4079-06cb-4051-972f-d91297b0427d
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -77,7 +78,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

@@ -6,6 +6,7 @@ apiType: External
 system: RCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ctuTaskPriorityModify
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ctuTaskPriorityModify
 ---
 
-# title
+### 3.7.2-料箱任务优先级调整
 > [!connector] URL: /rcs/ctuTaskPriorityModify
 > 描述: 3.7.2-料箱任务优先级调整
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 4f7c1edb-6e3a-4912-a724-b0ec64ebd684
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -83,7 +84,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

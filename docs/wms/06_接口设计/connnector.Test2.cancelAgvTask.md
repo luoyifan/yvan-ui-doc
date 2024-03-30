@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/Test2@cancelAgvTask
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/Test2@cancelAgvTask
 ---
 
-# title
+### 2.1.2-嘉兴-立体库-取消AGV任务(测试)
 > [!connector] URL: /wms/Test2@cancelAgvTask
 > 描述: 2.1.2-嘉兴-立体库-取消AGV任务(测试)
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 202089d4-bc8d-4c88-98de-cc3c39017f94
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -40,7 +41,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

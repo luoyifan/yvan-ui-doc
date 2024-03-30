@@ -6,6 +6,7 @@ apiType: External
 system: PES
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /pes/pesPalletPriorityModify
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/pes/pesPalletPriorityModify
 ---
 
-# title
+### 3.2.2-托盘任务优先级调整
 > [!connector] URL: /pes/pesPalletPriorityModify
 > 描述: 3.2.2-托盘任务优先级调整
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 845ff64a-aebc-4d55-93d0-79052ffd5f6a
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -83,7 +84,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

@@ -6,6 +6,7 @@ apiType: External
 system: PES
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /pes/pesPalletTransportAdd
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/pes/pesPalletTransportAdd
 ---
 
-# title
+### 3.2.1-托盘搬运任务添加
 > [!connector] URL: /pes/pesPalletTransportAdd
 > 描述: 3.2.1-托盘搬运任务添加
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 21134d38-aca5-429a-9934-387cb67a1d1b
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -95,7 +96,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

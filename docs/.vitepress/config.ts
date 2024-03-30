@@ -131,7 +131,7 @@ export default defineConfig({
 
         //大纲显示2-3级标题
         outline: {
-            level: [1, 2],
+            level: [1, 3],
             label: '当前页大纲'
         },
 

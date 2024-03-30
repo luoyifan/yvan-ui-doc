@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/inbound/workflow/LtkWorkflow@startInboundWithAgv
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/inbound/workflow/LtkWorkflow@startInboundWithAgv
 ---
 
-# title
+### 2.1.1-1-嘉兴-立体库-入库开始(使用侧叉搬运)
 > [!connector] URL: /wms/inbound/workflow/LtkWorkflow@startInboundWithAgv
 > 描述: 2.1.1-1-嘉兴-立体库-入库开始(使用侧叉搬运)
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 18c26a85-1585-4ebe-8de4-423bca659c6b
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -40,7 +41,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/tool/BpmnUtils@sendDingTalkMsg
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/tool/BpmnUtils@sendDingTalkMsg
 ---
 
-# title
+### 1.5.1-发送钉钉消息
 > [!connector] URL: /wms/tool/BpmnUtils@sendDingTalkMsg
 > 描述: 1.5.1-发送钉钉消息
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 68045508-1cd1-4e33-a23b-b7d470d2eb4b
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -40,7 +41,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

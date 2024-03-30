@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/Test3@ltkPilerArrive
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/Test3@ltkPilerArrive
 ---
 
-# title
+### 2.2.2-堆垛机到达
 > [!connector] URL: /wms/Test3@ltkPilerArrive
 > 描述: 2.2.2-堆垛机到达
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: e2b53b8f-14c1-4dad-bac5-2225a52b7fab
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -39,7 +40,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

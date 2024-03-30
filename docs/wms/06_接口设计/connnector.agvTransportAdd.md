@@ -6,6 +6,7 @@ apiType: External
 system: RCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/agvTransportAdd
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/agvTransportAdd
 ---
 
-# title
+### 3.5.1-托盘搬运任务添加
 > [!connector] URL: /rcs/agvTransportAdd
 > 描述: 3.5.1-托盘搬运任务添加
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 5adb537f-abb4-4fc1-b5dd-79bc0ea7d76e
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -95,7 +96,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

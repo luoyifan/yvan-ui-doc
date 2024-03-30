@@ -6,6 +6,7 @@ apiType: External
 system: WCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wcs/asrsPalletTaskAdd
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wcs/asrsPalletTaskAdd
 ---
 
-# title
+### 3.1.1-托盘搬运任务添加
 > [!connector] URL: /wcs/asrsPalletTaskAdd
 > 描述: 3.1.1-托盘搬运任务添加
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 12bdb98f-8859-49a1-b97d-22174e34053c
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -95,7 +96,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

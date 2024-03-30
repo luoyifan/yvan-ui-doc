@@ -6,6 +6,7 @@ apiType: External
 system: MFC
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /mfc/alkTaskPriorityModify
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/mfc/alkTaskPriorityModify
 ---
 
-# title
+### 3.3.2-多穿任务优先级调整
 > [!connector] URL: /mfc/alkTaskPriorityModify
 > 描述: 3.3.2-多穿任务优先级调整
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: d7c5eeb7-2366-40ae-8e48-7b6ea8441e36
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -83,7 +84,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

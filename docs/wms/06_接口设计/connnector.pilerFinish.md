@@ -6,6 +6,7 @@ apiType: Method
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wms/Test2@pilerFinish
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wms/Test2@pilerFinish
 ---
 
-# title
+### 2.1.4-堆垛机完成
 > [!connector] URL: /wms/Test2@pilerFinish
 > 描述: 2.1.4-堆垛机完成
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 7b4223a3-2361-4da1-ad9e-51f34aed59cf
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -52,7 +53,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

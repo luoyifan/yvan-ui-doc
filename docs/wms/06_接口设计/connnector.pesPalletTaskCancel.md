@@ -6,6 +6,7 @@ apiType: External
 system: PES
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /pes/pesPalletTaskCancel
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/pes/pesPalletTaskCancel
 ---
 
-# title
+### 3.2.3-托盘搬运任务取消
 > [!connector] URL: /pes/pesPalletTaskCancel
 > 描述: 3.2.3-托盘搬运任务取消
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 718411a5-7cf8-4d97-b8e6-f2200ba13d50
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -81,7 +82,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

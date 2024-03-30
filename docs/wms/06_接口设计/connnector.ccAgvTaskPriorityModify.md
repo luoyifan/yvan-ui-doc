@@ -6,6 +6,7 @@ apiType: External
 system: RCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /rcs/ccAgvTaskPriorityModify
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/rcs/ccAgvTaskPriorityModify
 ---
 
-# title
+### 3.6.3-托盘任务优先级调整
 > [!connector] URL: /rcs/ccAgvTaskPriorityModify
 > 描述: 3.6.3-托盘任务优先级调整
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 8983844f-2ce2-44d0-926e-d93b65555661
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -83,7 +84,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

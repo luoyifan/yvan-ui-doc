@@ -84,6 +84,9 @@ export function deepTravDir(linkPrefix, rootDir, relDir) {
             const meta = parseMarkdownFile(fullPath);
             if (meta) {
                 item.text = meta.title;
+                if (('' + meta.navIgnore) === 'true') {
+                    return
+                }
             }
 
             result.items.push(item);

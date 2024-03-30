@@ -6,6 +6,7 @@ apiType: Internal
 system: 
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /mfc/alkTaskRequest
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/mfc/alkTaskRequest
 ---
 
-# title
+### 4.3.1-多穿任务请求-设备回调
 > [!connector] URL: /mfc/alkTaskRequest
 > 描述: 4.3.1-多穿任务请求-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 3d2c6d66-29c8-4594-836c-3b483952c2b9
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -76,7 +77,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {

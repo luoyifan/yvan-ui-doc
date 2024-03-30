@@ -6,6 +6,7 @@ apiType: Internal
 system: WCS
 date: 2024-03-29 10:56
 author: yvan
+navIgnore: true
 url: /wcs/asrsRoadStatusModify
 tags: 
   - wms/connector
@@ -13,7 +14,7 @@ tags:
   - wms/connector/wcs/asrsRoadStatusModify
 ---
 
-# title
+### 4.1.1-立体库巷道(堆垛机)可用状态-设备回调
 > [!connector] URL: /wcs/asrsRoadStatusModify
 > 描述: 4.1.1-立体库巷道(堆垛机)可用状态-设备回调
 > 
@@ -24,7 +25,7 @@ tags:
 > 内部编号: 3af3d46e-36f0-4b4b-8893-853b7d1a3937
 
 
-# 请求
+#### 请求
 > [!info] 数据结构
 ```beanSchema
 {
@@ -81,7 +82,7 @@ tags:
 }
 ```
 
-# 响应
+#### 响应
 > [!info] 数据结构
 ```beanSchema
 {
