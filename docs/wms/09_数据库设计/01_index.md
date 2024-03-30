@@ -8,27 +8,6 @@ author: yvan
 >[!tip] 数据库设计
 >数据库设计
 
-```json
-{ 
-	"args": [ 
-		{
-			"type": "db",
-			"datasource": "master", 
-			"schema_name": "public", 
-			"tables": "*"
-		} 
-	] 
-}
-```
-
-# 表格
-```dataview
-table title as "表名", desc as "描述"
-from "wms/09_数据库设计"
-where contains(file.name, "db.")
-```
-
-
 # 列表
 | 表格名 | 分类 | 备注 |
 | --- | --- | --- |

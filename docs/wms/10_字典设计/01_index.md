@@ -7,24 +7,6 @@ author: yvan
 >[!tip] 字典设计
 >字典设计
 
-```json
-{ 
-	"args": [ 
-		{
-			"type": "dict",
-			"dicts": "*" 
-		} 
-	] 
-}
-```
-
-# 表格
-```dataview
-table desc as "描述", btype as "类型", itemsCount as "数量"
-from "wms/10_字典设计"
-where contains(file.name, "dict.")
-```
-
 # 列表
 | 字典名                 | 数量     | 类型  | 说明       |
 | ---------------------- | --------- | --- | ---------- |
