@@ -3,11 +3,27 @@ title: 字典设计
 date: 2024-03-27 23:36
 author: yvan
 ---
-# title
->[!tip] 字典设计
->字典设计
+# 10.字典设计
+>[!dict] 字典设计
 
-# 列表
+```ignore
+{ 
+	"args": [ 
+		{
+			"type": "dict",
+			"dicts": "*" 
+		} 
+	] 
+}
+```
+
+```dataview
+table desc as "描述", btype as "类型", itemsCount as "数量"
+from "wms/10_字典设计"
+where contains(file.name, "dict.")
+```
+
+
 | 字典名                 | 数量     | 类型  | 说明       |
 | ---------------------- | --------- | --- | ---------- |
 | [SYS_DICT_TYPE](./dict.SYS_DICT_TYPE) | 5 | 静态 | 字典类型 | 

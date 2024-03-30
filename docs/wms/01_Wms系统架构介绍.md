@@ -9,46 +9,46 @@ aliases:
 ## 系统介绍
 仓储管理系统，管理仓库四堵墙以内的物流作业执行
 技术选型：
-	- Vue3
-	- JDK1.8
-	- Gradle6.8
-	- PostgreSQL14
-	- Redis
-	- MinIO
-	- K8s
+- Vue3
+- JDK1.8
+- Gradle6.8
+- PostgreSQL14
+- Redis
+- MinIO
+- K8s
+
 组件：
-	- Vue3
-	- ElementUI+
-	- VAnt4
-	- SpringBoot
-	- Swagger3
-	- MyBatis
-	- QueryDSL
-	- Jackson
-	- OKHttp
-	- Netty
-	- Camunda
-	- Socketio
-	- Prometheus
-功能：基础资料、系统管理、规则管理、入库管理、出库管理、库内管理、查询报表、打印报表
+- Vue3
+- ElementUI+
+- VAnt4
+- SpringBoot
+- Swagger3
+- MyBatis
+- QueryDSL
+- Jackson
+- OKHttp
+- Netty
+- Camunda
+- Socketio
+- Prometheus
 
 ## 框架组件
-JDK 1.8
-Gradle 6.8.3
-PostgreSQL >= 14.0 或同版本Paas服务
-Mysql 8.0
-Redis >= 6.0或同版本Paas
-MiniIO 4.x或S3兼容的对象存储Paas服务
-Nacos >= V2.0
-ElasticSearch 8.x
-Kubernetes  v1.23.15
-Rancher v2.6.9
-Jenkins 2.361.1
-Nexus3 3.47.1
-Nginx 1.22.1
-Harbor 2.7.0
-Node 16.x
-Yarn 1.22.19
+- JDK 1.8
+- Gradle 6.8.3
+- PostgreSQL >= 14.0 或同版本Paas服务
+- Mysql 8.0
+- Redis >= 6.0或同版本Paas
+- MiniIO 4.x或S3兼容的对象存储Paas服务
+- Nacos >= V2.0
+- ElasticSearch 8.x
+- Kubernetes  v1.23.15
+- Rancher v2.6.9
+- Jenkins 2.361.1
+- Nexus3 3.47.1
+- Nginx 1.22.1
+- Harbor 2.7.0
+- Node 16.x
+- Yarn 1.22.19
 
 ## 应用架构
 ![[Pasted image 20240315202941.png]]

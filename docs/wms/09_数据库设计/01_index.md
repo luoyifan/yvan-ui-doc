@@ -4,11 +4,29 @@ date: 2024-03-27 23:46
 author: yvan
 ---
 
-# title
->[!tip] 数据库设计
->数据库设计
+# 09.数据库设计
+>[!dbtable] 数据库设计
 
-# 列表
+```ignore
+{ 
+	"args": [ 
+		{
+			"type": "db",
+			"datasource": "master", 
+			"schema_name": "public", 
+			"tables": "*"
+		} 
+	] 
+}
+```
+
+```dataview
+table title as "表名", desc as "描述"
+from "wms/09_数据库设计"
+where contains(file.name, "db.")
+```
+
+
 | 表格名 | 分类 | 备注 |
 | --- | --- | --- |
 | [bas_address](./db.bas_address) | 表格 | 地址库 | 
@@ -194,3 +212,4 @@ author: yvan
 | [task_scheduler_cmd](./db.task_scheduler_cmd) | 表格 | 调度器指令 | 
 | [task_scheduler_log](./db.task_scheduler_log) | 表格 | 调度器事件日志 | 
 | [task_shell_job](./db.task_shell_job) | 表格 | js脚本任务 | 
+

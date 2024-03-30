@@ -4,11 +4,10 @@ date: 2024-03-27 23:46
 author: yvan
 ---
 
-# title
->[!tip] 数据库设计
->数据库设计
+# 08.流程设计
+>[!workflow] 流程设计
 
-```json
+```ignore
 { 
 	"args": [ 
 		{
@@ -18,14 +17,12 @@ author: yvan
 }
 ```
 
-# 表格
 ```dataview
 table title as "表名", desc as "描述"
 from "wms/08_流程设计"
 where contains(file.name, "flow.")
 ```
 
-# 列表
 | 流程  | 名称   | 版本 | 部署时间 |
 | ----- | ------ | ---- | ------ |
 | [AutoReceipt](./flow.AutoReceipt) | 顺德大参林自动收货 |  | 2024-01-31 10:19:23.214  |

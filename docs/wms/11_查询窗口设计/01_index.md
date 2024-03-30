@@ -4,16 +4,16 @@ date: 2024-03-29 22:02
 author: yvan
 ---
 
-# title
+# 11.查询窗口设计
 >[!widget] 查询窗口设计
 
-```json
-{
-  "args": [
-    {
-      "type": "widget"
-    }
-  ]
+```ignore
+{ 
+	"args": [ 
+		{
+			"type": "widget"
+		} 
+	] 
 }
 ```
 
@@ -23,7 +23,6 @@ from "wms/11_查询窗口设计"
 where contains(file.name, "widget.")
 ```
 
-# 列表
 | 名称                               | 描述     | 字段数 | sqlId |
 | ---------------------------------- | -------- | ---- | ---- |
 | [AreaSearch](./widget.AreaSearch.md) | 库区检索 | 6 | selectArea |
@@ -47,3 +46,4 @@ where contains(file.name, "widget.")
 | [UserSearch](./widget.UserSearch.md) | 用户检索 | 4 | selectUser |
 | [UserWhSearch](./widget.UserWhSearch.md) | 用户仓库检索 | 5 | UserWhSearch |
 | [WhSearch](./widget.WhSearch.md) | 仓库检索 | 6 | selectWh |
+
