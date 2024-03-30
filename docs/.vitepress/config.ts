@@ -152,6 +152,11 @@ export default defineConfig({
     //         VitePressPreprocessMdPlugin(),
     //     ],
     // },
+    vite: {
+        build: {
+            chunkSizeWarningLimit: 2000
+        }
+    },
 
     //markdown配置
     markdown: {
