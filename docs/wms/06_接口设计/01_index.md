@@ -7,6 +7,26 @@ author: yvan
 >[!tip] 接口设计
 >接口目录
 
+```json
+{ 
+	"args": [ 
+		{
+			"type": "connector"
+		}
+	] 
+}
+```
+
+
+```dataview
+table desc as "描述", apiType as "类型", system as "系统"
+from "wms/06_接口设计"
+where type = "connector"
+```
+
+# WCS
+[嘉兴WCS接口设计](./嘉兴WCS接口设计.md)
+
 # 列表
 | 接口名 | 中文 | 类型 | 系统 | URL |
 | ------ | ---- | ---- | ---- | --- |
