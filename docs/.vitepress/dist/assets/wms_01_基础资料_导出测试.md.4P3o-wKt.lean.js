@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.DZm5WilM.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"wms/01_基础资料/导出测试.md","filePath":"wms/01_基础资料/导出测试.md"}'),s={name:"wms/01_基础资料/导出测试.md"};function r(_,o,c,n,m,p){return a(),t("div")}const f=e(s,[["render",r]]);export{i as __pageData,f as default};
