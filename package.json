@@ -20,7 +20,7 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-rc.45",
+    "vitepress": "^1.0.1",
     "lucide-vue-next": "^0.363.0"
   }
 }
