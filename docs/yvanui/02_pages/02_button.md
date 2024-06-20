@@ -1,5 +1,5 @@
 ---
-title: 按钮
+title: 按钮(button)
 ---
 
 ![[img.png]]
