@@ -10,14 +10,14 @@ hero:
     alt: Galaxis Dev Platform
   actions:
     - theme: brand
-      text: 基础平台
+      text: 开始使用
       link: /yvanui/01_index
     # - theme: alt
     #   text: WMS系统
     #   link: /wms/01_index
-    - theme: sponsor
-      text: 分享
-      link: /doc/share
+    # - theme: sponsor
+    #  text: 分享
+    #  link: /doc/share
 
 features:
   - icon: 🧬

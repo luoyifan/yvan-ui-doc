@@ -10,10 +10,10 @@ import {applyPlugins} from "./theme/plugins";
 // https://github.com/markdown-it/markdown-it-container
 export default defineConfig({
     lang: 'zh-CN',
-    title: 'YvanUI',
+    title: '银河开发平台',
     description: '企业级无代码框架',
     head: [['link', {rel: 'icon', href: '/favicon.ico'}]],
-    appearance: 'dark',
+    // appearance: 'light',
     // postRender(context) {
     //     // ...
     //     console.log('postRender', context)
@@ -33,7 +33,7 @@ export default defineConfig({
 
         nav: [
             yvanui.getNav(),
-            wms.getNav(),
+            // wms.getNav(),
             //@ts-ignore
             doc.getNav(),
         ],
@@ -66,7 +66,7 @@ export default defineConfig({
             // ],
 
             // 当用户位于 `config` 目录时，会显示此侧边栏
-            '/wms/': wms.getSidebar(),
+            // '/wms/': wms.getSidebar(),
             // '/wms/': [
             //     {
             //         text: 'inbound', collapsed: false,
