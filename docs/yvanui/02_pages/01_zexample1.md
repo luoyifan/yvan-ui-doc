@@ -27,3 +27,28 @@ author: yvan
 ![[01_zexample1/06_agridpuls_ref.png]]
 
 ### 4.2 设置数据源
+    点击【aggridplus 属性】侧【打开设计器】，选择【数据查询】，勾选【自动加载数据】，输入数据查询SQL、
+    数据查询SQL参数，点击【保存】按钮。
+![[01_zexample1/07_agridplus_datasource.png]]
+
+### 4.3 设置显示字段
+    输入数据查询SQL后，点击【分析显示字段】选择列表需要显示的字段，点击【添加】。
+![[01_zexample1/08_agridplus_field_1.png]]
+![[01_zexample1/09_agridplus_field_2.png]]
+    选择【字段】，删除默认的field1、field2字段，点击【保存】。
+![[01_zexample1/10_agridplus_field_3.png]]
+![[01_zexample1/11_agridplus_field_4.png]]
+
+## 5. 保存文件
+    点击【菜单区】>【保存文件】
+![[01_zexample1/12_agridplus_save.png]]
+
+## 6. 注册菜单
+    点击【设置】>【模块管理】>【添加菜单模块】，数据相关信息，点击【保存】。
+![[01_zexample1/13_menu.png]]
+    点击【设置】>【角色模块管理】>选中角色>勾选【货主资源】，点击【保存】。
+![[01_zexample1/14_role_menu.png]]
+
+## 7. 预览页面
+    点击左侧【货主资料】菜单，进去货主资料页面。
+![[01_zexample1/15_preview.png.png]]
