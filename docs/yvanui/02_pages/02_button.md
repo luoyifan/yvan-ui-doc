@@ -10,13 +10,13 @@ title: 按钮 button
 ######
 针对于按钮可以设置大小类型等等，框架中常用的几种按钮如下图：
 ######
-![img_2.png](img_2.png)
+![[02_button/img_2.png]]
 ######
-备注：要按钮会根据主题色的不同，默认显示为主题色的颜色。
+备注：按钮会根据主题色的不同，默认显示为主题色的颜色。
 ## 事件
 进入二开界面，选中按钮后，点击选择事件或属性，可调出事件列表，如下图：
 ######
-![img_1.png](img_1.png)
+![[02_button/img_1.png]]
 
 | 事件名称  | 说明 | 参数和示例                                |
 |:------|--|--------------------------------------|
@@ -43,4 +43,4 @@ title: 按钮 button
 | link | 是否设置为文本模式，默认为false | link:false |
 | type | 设置按钮的类型，常用有default（默认）、primary（主要）、success（成功）、info（信息）、warning（警告）、danger（危险），默认为default | type:default |
 | iconCls | 为按钮添加图标，默认不设置，为空 | iconCls:'element AlarmClock' |
-| size | 设置按钮的尺寸大小，三种选项large（大）、default（中）、small（小），默认为false | size:false |
+| size | 设置按钮的尺寸大小，三种选项large（大）、default（中）、small（小），默认为false | size:default |
