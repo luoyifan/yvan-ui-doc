@@ -51,4 +51,4 @@ author: yvan
 
 ## 7. 预览页面
     点击左侧【货主资料】菜单，进去货主资料页面。
-![[01_zexample1/15_preview.png.png]]
+![[01_zexample1/15_preview.png]]
