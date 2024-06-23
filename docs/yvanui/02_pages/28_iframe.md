@@ -2,8 +2,7 @@
 title: iframe
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# iframe 组件
 
 ## 事件
 

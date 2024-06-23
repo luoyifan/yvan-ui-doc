@@ -2,8 +2,7 @@
 title: 文件上传 filefield
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 文件上传 filefield 组件
 
 ## 事件
 

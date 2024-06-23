@@ -2,8 +2,7 @@
 title: 日期范围输入框 daterangefield
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 日期范围输入框 daterangefield 组件
 
 ## 事件
 

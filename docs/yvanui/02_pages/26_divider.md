@@ -2,8 +2,7 @@
 title: 分割条 divider
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 分割条 divider 组件
 
 ## 事件
 

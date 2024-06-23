@@ -2,8 +2,7 @@
 title: 自定义搜索框 combosearch
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 自定义搜索框 combosearch 组件
 
 ## 事件
 

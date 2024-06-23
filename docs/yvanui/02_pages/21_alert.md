@@ -2,8 +2,7 @@
 title: 提示框 alert
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 提示框 alert 组件
 
 ## 事件
 
