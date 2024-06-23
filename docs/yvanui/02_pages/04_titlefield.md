@@ -2,8 +2,7 @@
 title: 表单强制分段 titlefield
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 表单强制分段 titlefield 组件
 
 ## 事件
 

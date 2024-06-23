@@ -2,8 +2,7 @@
 title: 纵向分割条 divider_formitem
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 纵向分割条 divider_formitem 组件
 
 ## 事件
 

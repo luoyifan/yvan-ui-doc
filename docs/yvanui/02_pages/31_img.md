@@ -2,8 +2,7 @@
 title: 图片 img
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 图片 img 组件
 
 ## 事件
 

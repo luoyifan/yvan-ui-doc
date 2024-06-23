@@ -2,8 +2,7 @@
 title: 选项卡 tabs
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 选项卡 tabs 组件
 
 ## 事件
 

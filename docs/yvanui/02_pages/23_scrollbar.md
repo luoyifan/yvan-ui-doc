@@ -1,9 +1,8 @@
 ---
-title: 分割面板 split
+title: 滚动条 scrollbar
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 滚动条 scrollbar 组件
 
 ## 事件
 

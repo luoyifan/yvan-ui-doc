@@ -2,8 +2,7 @@
 title: 插槽 slot
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 插槽 slot 组件
 
 ## 事件
 

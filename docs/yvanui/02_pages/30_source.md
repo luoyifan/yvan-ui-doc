@@ -2,8 +2,7 @@
 title: 源码编辑器 source
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 源码编辑器 source 组件
 
 ## 事件
 
