@@ -2,8 +2,7 @@
 title: 数据列表 yvlist
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 数据列表 yvlist 组件
 
 ## 事件
 

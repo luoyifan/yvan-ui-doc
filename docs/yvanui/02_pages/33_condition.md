@@ -2,8 +2,7 @@
 title: 条件编辑器 condition
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 条件编辑器 condition 组件
 
 ## 事件
 

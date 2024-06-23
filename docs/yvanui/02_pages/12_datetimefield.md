@@ -2,8 +2,7 @@
 title: 日期时间输入框 datetimefield
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 日期时间输入框 datetimefield 组件
 
 ## 事件
 

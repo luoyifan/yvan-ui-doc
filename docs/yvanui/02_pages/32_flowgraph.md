@@ -2,8 +2,7 @@
 title: flowgraph
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# flowgraph 组件
 
 ## 事件
 

@@ -2,8 +2,7 @@
 title: 字段插槽 fieldslot
 ---
 
-# 按钮 button 组件
-![[img.png]]
+# 字段插槽 fieldslot 组件
 
 ## 事件
 
