@@ -87,7 +87,8 @@ export default defineConfig({
             //         ]
             //     }
             // ]
-            ...doc.getSidebar(),
+
+            // ...doc.getSidebar(),
         },
 
         //页脚
