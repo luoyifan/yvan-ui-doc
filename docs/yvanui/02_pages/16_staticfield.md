@@ -27,25 +27,25 @@ staticfield组件通常用于显示不需要用户输入或交互的信息。它
 
 ## 属性
 
-| 属性名称                   | 说明                                                  | 示例                         |
-|:-----------------------|-----------------------------------------------------|----------------------------|
-| reference              | 设置组件的refs                                           | refs:staticfield1          |
-| modal                  | 设置组件的modal值名,(必填项，否则选不中选项)                          | bind:{value:'{whExample}'} |
-| hidden                 | 隐藏或显示组件，默认为false                                    | hidden:false               |
-| fieldLabel             | 标签名                                                 | fieldLabel:'文本字段'          |
-| text                   | 文本字段对应的内容                                           | text:'我是内容'                |
-| weight                 | 权重的宽度，6中选择，1、2、3、4、5、6，默认为1                         | weight：1                   |
-| labelWidth             | 标签宽度，默认为auto                                        | labelWidth:80              |
-| paddingTop             | 距上的内边距，默认为0                                                         | paddingTop:5                    |
-| paddingRight           | 距右的内边距，默认为0                                                         | paddingRight:5                  |
-| paddingBottom          | 距下的内边距，默认为0                                                         | paddingBottom:5                 |
-| paddingLeft            | 距左的内边距，默认为0                                                         | paddingLeft:5                   |
-| cssBackgroundColor     | 设置整个组件的背景色，默认为none                                                  | cssBackgroundColor:"#722ed1"    |
-| labelBackgroundColor   | 设置组件label的背景色，默认为none                                               | labelBackgroundColor: '#eb2f96' |
-| labelSize              | 设置组件label的文字大小，默认为14px                                              | labelSize: '12px'               |
-| labelColor             | 设置组件label的文字颜色，默认为'#606266'                                         | labelColor: '#fbadd2'           |
-| isLabelBlod            | 是否设置label的字题为粗体,默认为false                                            | isLabelBlod:true                |
-| valueBackgroundColor   | 设置组件value的背景色，默认为none                                               | valueBackgroundColor: '#eb2f96' |
-| valueSize              | 设置组件value的文字大小，默认为14px                                              | valueSize: '12px'               |
-| valueColor             | 设置组件value的文字颜色，默认为'#606266'                                         | valueColor: '#fbadd2'           |
-| isValueBlod            | 是否设置value的字题为粗体,默认为false                                            | isValueBlod:true                |
+| 属性名称                   | 说明                           | 示例                         |
+|:-----------------------|------------------------------|----------------------------|
+| reference              | 设置组件的refs                    | refs:staticfield1          |
+| modal                  | 设置组件的modal值名(当填写后text属性就会失效) | bind:{value:'{whExample}'} |
+| hidden                 | 隐藏或显示组件，默认为false             | hidden:false               |
+| fieldLabel             | 标签名                          | fieldLabel:'文本字段'          |
+| text                   | 文本字段对应的内容（想要生效，需去掉modal值）    | text:'我是内容'                |
+| weight                 | 权重的宽度，6中选择，1、2、3、4、5、6，默认为1  | weight：1                   |
+| labelWidth             | 标签宽度，默认为auto                 | labelWidth:80              |
+| paddingTop             | 距上的内边距，默认为0                  | paddingTop:5                    |
+| paddingRight           | 距右的内边距，默认为0                  | paddingRight:5                  |
+| paddingBottom          | 距下的内边距，默认为0                  | paddingBottom:5                 |
+| paddingLeft            | 距左的内边距，默认为0                  | paddingLeft:5                   |
+| cssBackgroundColor     | 设置整个组件的背景色，默认为none           | cssBackgroundColor:"#722ed1"    |
+| labelBackgroundColor   | 设置组件label的背景色，默认为none        | labelBackgroundColor: '#eb2f96' |
+| labelSize              | 设置组件label的文字大小，默认为14px       | labelSize: '12px'               |
+| labelColor             | 设置组件label的文字颜色，默认为'#606266'  | labelColor: '#fbadd2'           |
+| isLabelBlod            | 是否设置label的字题为粗体,默认为false     | isLabelBlod:true                |
+| valueBackgroundColor   | 设置组件value的背景色，默认为none        | valueBackgroundColor: '#eb2f96' |
+| valueSize              | 设置组件value的文字大小，默认为14px       | valueSize: '12px'               |
+| valueColor             | 设置组件value的文字颜色，默认为'#606266'  | valueColor: '#fbadd2'           |
+| isValueBlod            | 是否设置value的字题为粗体,默认为false     | isValueBlod:true                |
