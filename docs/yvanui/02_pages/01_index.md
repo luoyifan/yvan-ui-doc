@@ -42,12 +42,9 @@ author: yvan
 | [scrollbar](./23_scrollbar.md) | 滚动容器 |
 | [aggrid](./24_aggrid.md) | 表格 |
 | [aggridplus](./25_aggridplus.md) | 高级表格 |
-| [divider](./26_divider.md) | 分割条 |
-| [divider_formitem](./27_divider_formitem.md) | 字段分割条 |
+| [divider](./26_divider.md) | 横向分割条 |
+| [divider_formitem](./27_divider_formitem.md) | 表单横向分割条 |
 | [iframe](./28_iframe.md) | Iframe容器 |
 | [slot](./29_slot.md) | 插槽 |
-| [source](./30_source.md) | 源码输入框 |
 | [img](./31_img.md) | 图片组件 |
-| [flowgraph](./32_flowgraph.md) | 流程图组件 |
-| [condition](./33_condition.md) | 条件组合面板 |
 | [yvlist](./34_yvlist.md) | 列表组件 |
