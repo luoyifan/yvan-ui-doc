@@ -29,30 +29,30 @@ datefield组件是一种用户界面控件，允许用户通过交互方式选�
 
 ## 属性
 
-| 属性名称                   | 说明                                                  | 示例                              |
-|:-----------------------|-----------------------------------------------------|---------------------------------|
-| reference              | 设置组件的refs                                           | refs:datefield1                 |
-| modal                  | 设置组件的modal值名（必填项，否则运行时组件切换没反应                       | bind:{value:'{startDate}'}      |
-| hidden                 | 隐藏或显示组件，默认为false                                    | hidden:false                    |
-| fieldLabel             | 标签名                                                 | fieldLabel:'NewDate'            |
-| required               | 组件是否必填，默认为false                                     | required:false                  |
-| weight                 | 权重的宽度，6中选择，1、2、3、4、5、6，默认为1                         | weight：1                        |
-| labelWidth             | 标签宽度，默认为auto                                        | labelWidth:80                   |
-| size                   | 设置组件的尺寸大小，三种选项large（大）、default（中）、small（小），默认为false | size:default                    |
-| placeholder            | 占位字符，默认为：请输入                                        | placeholder:'请输入'               |
-| maxlength              | 最大长度，默认为空                                           | maxlength:''                    |
-| valueFormat            | 日期格式，默认为YYYY-MM-DD                                  | valueFormat:''                    |
-| disabled               | 是否禁用组件，默认为false                                     | disabled:false                  |
-| readonly               | 是否允许只读，默认为false                                     | readonly:false                  |
-| paddingTop             | 距上的内边距，默认为0                                         | paddingTop:5                    |
-| paddingRight           | 距右的内边距，默认为0                                         | paddingRight:5                  |
-| paddingBottom          | 距下的内边距，默认为0                                         | paddingBottom:5                 |
-| paddingLeft            | 距左的内边距，默认为0                                         | paddingLeft:5                   |
-| cssBackgroundColor     | 设置整个组件的背景色，默认为none                                  | cssBackgroundColor:"#722ed1"    |
-| labelBackgroundColor   | 设置组件label的背景色，默认为none                               | labelBackgroundColor: '#eb2f96' |
-| labelSize              | 设置组件label的文字大小，默认为14px                              | labelSize: '12px'               |
-| labelColor             | 设置组件label的文字颜色，默认为'#606266'                         | labelColor: '#fbadd2'           |
-| isLabelBlod            | 是否设置label的字题为粗体,默认为false                            | isLabelBlod:true                |
-| valueBackgroundColor   | 设置组件value的背景色，默认为none                               | valueBackgroundColor: '#eb2f96' |
-| valueSize              | 设置组件value的文字大小，默认为14px                              | valueSize: '12px'               |
-| valueColor             | 设置组件value的文字颜色，默认为'#606266'                         | valueColor: '#fbadd2'           |
+| 属性名称                 | 说明                                                  | 示例                              |
+|:---------------------|-----------------------------------------------------|---------------------------------|
+| reference            | 设置组件的refs                                           | refs:datefield1                 |
+| modal                | 设置组件的modal值名（必填项，否则运行时组件切换没反应）                      | bind:{value:'{startDate}'}      |
+| hidden               | 隐藏或显示组件，默认为false                                    | hidden:false                    |
+| fieldLabel           | 标签名                                                 | fieldLabel:'NewDate'            |
+| required             | 组件是否必填，默认为false                                     | required:false                  |
+| weight               | 权重的宽度，6中选择，1、2、3、4、5、6，默认为1                         | weight：1                        |
+| labelWidth           | 标签宽度，默认为auto                                        | labelWidth:80                   |
+| size                 | 设置组件的尺寸大小，三种选项large（大）、default（中）、small（小），默认为false | size:default                    |
+| placeholder          | 占位字符，默认为空                                           | placeholder:''               |
+| maxlength            | 最大长度，默认为空                                           | maxlength:''                    |
+| valueFormat          | 日期格式，默认为YYYY-MM-DD                                  | valueFormat:''                    |
+| disabled             | 是否禁用组件，默认为false                                     | disabled:false                  |
+| readonly             | 是否允许只读，默认为false                                     | readonly:false                  |
+| marginTop            | 距上的内边距，默认为0                                         | paddingTop:5                    |
+| marginRight          | 距右的内边距，默认为0                                         | paddingRight:5                  |
+| marginBottom         | 距下的内边距，默认为0                                         | paddingBottom:5                 |
+| marginLeft           | 距左的内边距，默认为0                                         | paddingLeft:5                   |
+| cssBackgroundColor   | 设置整个组件的背景色，默认为none                                  | cssBackgroundColor:"#722ed1"    |
+| labelBackgroundColor | 设置组件label的背景色，默认为none                               | labelBackgroundColor: '#eb2f96' |
+| labelSize            | 设置组件label的文字大小，默认为14px                              | labelSize: '12px'               |
+| labelColor           | 设置组件label的文字颜色，默认为'#606266'                         | labelColor: '#fbadd2'           |
+| isLabelBlod          | 是否设置label的字题为粗体,默认为false                            | isLabelBlod:true                |
+| valueBackgroundColor | 设置组件value的背景色，默认为none                               | valueBackgroundColor: '#eb2f96' |
+| valueSize            | 设置组件value的文字大小，默认为14px                              | valueSize: '12px'               |
+| valueColor           | 设置组件value的文字颜色，默认为'#606266'                         | valueColor: '#fbadd2'           |
