@@ -2,31 +2,40 @@
 title: 文本输入框 textfield
 ---
 
-
 # 文本输入框 textfield 组件
+
 textfield组件是一种基础的用户界面元素，允许用户通过鼠标或键盘输入字符，用于表单组件内，便于用户输入和提交数据。
+
 #### 功能描述
+
 1. 用户可以通过键盘输入字符，包括字母、数字和特殊符号
 2. 用户可以通过鼠标点击输入框来激活焦点，从而开始输入。
 3. 在输入框为空时，显示提示性文字，帮助用户理解需要输入的内容类型。
+
 #### 示例显示
+
 ![[03_textfield/img_1.png]]
 ![[03_textfield/img.png]]
+
 ## 事件
+
 调用组件的事件，同上button组件
-| 事件名称     | 说明        | 参数和示例                    |
+| 事件名称 | 说明 | 参数和示例 |
 |:---------|-----------|--------------------------|
-| focus    | 获取焦点时触发   | textfield1_focus(){}     |
-| blur     | 失去焦点触发    | textfield1_blur(){}      |
-| change   | 更改时触发     | textfield1_change(){}    |
-| input    | 输入时触发     | textfield1_input(){}     |
-| scancode | 扫码枪读码后触发  | textfield1_scancode(){}  |
+| appendIconClick | 点击附加图标后触发 | textfield1_appendIconClick(){} |
+| focus | 获取焦点时触发 | textfield1_focus(){} |
+| blur | 失去焦点触发 | textfield1_blur(){} |
+| change | 更改时触发 | textfield1_change(){} |
+| input | 输入时触发 | textfield1_input(){} |
+| scancode | 扫码枪读码后触发 | textfield1_scancode(){} |
 
 ## 方法
+
 方法一般使用于各类事件中，调用即可生效
-| 方法名称   | 说明 | 参数和示例                                |
+| 方法名称 | 说明 | 参数和示例 |
 |:-------|--|--------------------------------------|
-| focus  | 组件聚焦 | this.refs.input1.focus() |
+| focus | 组件聚焦 | this.refs.input1.focus() |
+
 ## 属性
 
 | 属性名称                 | 说明                                                  | 示例                                  |
@@ -34,6 +43,7 @@ textfield组件是一种基础的用户界面元素，允许用户通过鼠标�
 | reference            | 设置组件的refs                                           | refs:textfield1                     |
 | modal                | 设置组件的modal值名                                        | bind:{value:'{whName}'}             |
 | hidden               | 隐藏或显示组件，默认为false                                    | hidden:false                        |
+| appendIcon           | 设置附加图标，默认为空                                         | appendIcon:'search'                 |
 | fieldLabel           | 标签名                                                 | fieldLabel:'字段1'                    |
 | required             | 组件是否必填，默认为false                                     | required:false                      |
 | weight               | 权重的宽度，6中选择，1、2、3、4、5、6，默认为1                         | weight：1                            |
