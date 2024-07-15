@@ -6,8 +6,19 @@ author: yvan
 
 # 系统标准函数
 
-###  _ Lodash函数
+系统标准函数，是一个挂在 window 下的对象，用来提供一些常用的函数，方便开发者调用。
+一般用 system. 开头调用。
 
+在页面中，可以直接调用 system 对象，不需要引入。
+在控制台中，可以直接调用 window.system 对象，不需要引入
+
+### createUUID
+客户端生成UUID
+```javascript
+console.log('createUUID', system.createUUID())
+```
+
+###   _ Lodash函数
 用来快捷调用 Lodash
 
 ```javascript
@@ -18,14 +29,6 @@ system._.map([1, 2, 3], function (n) {
 system._.remove([1, 2, 3, 4], function (n) {
     return n % 2 === 0;
 });
-```
-
-### createUUID 生成UUID
-
-客户端生成UUID
-
-```javascript
-const id = system.createUUID()
 ```
 
 ### defer 延迟执行函数
@@ -178,58 +181,76 @@ this.refs.asnForm.validate().then(() => {
 ```
 
 ### showErrorDialog
+
 弹出用户必须点击确认的错误信息
+
 ```javascript
 system.showErrorDialog("用户名不能为空")
 ```
 
 ### showInfoDialog
+
 弹出用户必须点击确认的信息
+
 ```javascript
 system.showInfoDialog("切换语言成功！")
 ```
 
 ### alert
+
 信息提示内容，强提示，必须用户点击确认
+
 ```javascript
 system.alert("请选择ASN订单")
 ```
 
 ### confirm 弹出确认对话框
+
 弹出确认对话框
+
 ```javascript
 system.confirm("确定删除吗?").then(() => {
     // 用户点击了确认
 })
 ```
+
 ### 加密相关
+
 - makeMd5 生成MD5
 - aesEncrypt AES加密
 - aesDecrypt AES解密
 
 ### getNowDate
+
 获取当前日期(与服务端同步)
+
 ```javascript
 const nowDate = system.getNowDate()
 ```
 
-### getNowTime 
+### getNowTime
+
 获取当前时间(与服务端同步)
+
 ```javascript
 const nowTime = system.getNowTime()
 ```
 
 ### syncTime
+
 同步时间(与服务端), 一般在前端刚刚刷新完成后调用
 客户端会调用 /wms/TimeSync@time 的服务端接口，完成时间同步
 时间同步完成后才能调用 getNowDate/getNowTime 等函数，否则取到的时间是跟随客户端的，可能不准确
+
 ```javascript
 system.syncTime()
 ```
 
-### importExcelDialog 
+### importExcelDialog
+
 导入Excel对话框
 columns 设置参考 aggridplus 的 column 配置
+
 ```javascript
 system.importExcelDialog({
     columns: [
@@ -239,9 +260,9 @@ system.importExcelDialog({
     this.form1.import_customer = ''
     system.showLoading()
     system.invokeServer("/wms/outbound/waveDispatch/WaveDispatch@importCustomer", {
-        data : data,
+        data: data,
     }).then(res => {
-        if(!res.data) {
+        if (!res.data) {
             system.msg('导入的客户编号匹配到的客户为空!')
             return
         }
