@@ -6,14 +6,15 @@ author: yvan
 
 # 介绍
 
-| 组件名                          | 说明 |
-|:-----------------------------|--|
-| [01_zback.md](./01_zback.md) | 后台编码规范 |
-| [01_system.md](./01_system.md) | 系统标准函数 |
-| [example1.md](./01_zexample1.md) | 示例1.基础资料 |
-| [example2.md](./01_zexample2.md) | 示例2.开发表单 |
-| [example3.md](./01_zexample3.md) | 示例3.开发ASN单据界面 |
+| 组件名                              | 说明             |
+|:---------------------------------|----------------|
+| [01_zback.md](./01_zback.md)     | 后台编码规范         |
+| [01_system.md](./01_system.md)   | 系统标准函数         |
+| [example1.md](./01_zexample1.md) | 示例1.基础资料       |
+| [example2.md](./01_zexample2.md) | 示例2.开发表单       |
+| [example3.md](./01_zexample3.md) | 示例3.开发ASN单据界面  |
 | [example4.md](./01_zexample4.md) | 示例4.主表、子表模式的开发 |
+| [example5.md](./01_zexample5.md) | 示例5.平板应用开发     |
 
 ## 组件列表
 
