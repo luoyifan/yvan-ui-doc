@@ -7,11 +7,20 @@ slot 插槽组件是一种用户界面控件，是一个空闲占位符，能以
 
 与 filedslot 的区别是，slot 组件是整块元素（与 tree / grid 同级），而 fieldslot 只能拖进 form 表单中使用。
 
-#### 示例显示
-![[29_slot/img.png]]
+## 拖入 slot 组件
+![[29_slot/img02.png]]
 
+## 编辑 vue 文件
+![[29_slot/img03.png]]
 
-### 编写示例
+![[29_slot/img04.png]]
+
+## 编写插槽
+![[29_slot/img05.png]]
+
+![[29_slot/img06.png]]
+
+## 编写示例
 在界面中拖入 slot 组件，并命名为 test1
 在 xxx.design.js 同等路径下，新建 xxx.vue 文件，内容如下
 ```

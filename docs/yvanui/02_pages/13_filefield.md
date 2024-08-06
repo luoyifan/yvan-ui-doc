@@ -6,6 +6,58 @@ title: 文件上传 filefield
 
 filefield组件是一种用户界面控件，允许用户通过通过点击或者拖拽上传文件。多应用于表单场景，为用户提供便捷的文件上传功能。
 
+## 组件示例
+```javascript
+{
+    xtype: 'filefield',
+    fieldLabel: '文件',
+    bind: {
+        value: '{form.file}',
+    },
+    hidden: false,
+    disabled: false,
+    loading: false,
+    cls: '',
+    placeholder: '请输入',
+    size: 'default',
+    readonly: false,
+    weight: 1,
+    required: true,
+    showFileList: true,
+    listeners: {
+        success: '{filefield1_success}',
+    },
+    action: '/wms_api/api/pages/sys/pdaVersion/PdaPackUpload@uploadFile',
+    autoUpload: true,
+    method: 'post',
+}
+```
+
+## 编写后端方法
+![[13_filefield/img02.png]]
+```groovy
+/**
+ * 文件上传
+ * @param request
+ * @return
+ */
+static def uploadFile(HttpServletRequest request) {
+    String deploy = request.getHeader("deploy")
+    SecurityContext context = SecurityContextHolder.getContext()
+    if (context == null) {
+        throw new BusinessException("当前用户未登录")
+    }
+    MultipartFile file = ((StandardMultipartHttpServletRequest) ((HttpRequestCachingWrapper) request).getRequest()).getFile("file");
+    FileUploadRequest uploadRequest = new FileUploadRequest(DEFAULT_BUCKET_NAME, file.getInputStream())
+    uploadRequest.setFileName(file.getOriginalFilename())
+    uploadRequest.setFileSize(file.getSize())
+    uploadRequest.setContentType(file.getContentType())
+    FileSystemClient fileClient = SpringContextHolder.getBean(FileSystemClient.class)
+    FileUploadResponse response = fileClient.upload(uploadRequest)
+    return Model.newSuccess(response)
+}
+```
+
 ## 事件
 
 | 事件名称          | 说明                | 参数和示例                    |
