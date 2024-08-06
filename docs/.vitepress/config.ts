@@ -11,7 +11,7 @@ import {applyPlugins} from "./theme/plugins";
 export default defineConfig({
     lang: 'zh-CN',
     title: '银河开发平台',
-    description: '企业级无代码框架',
+    description: '企业级无代码/低代码开发平台',
     head: [['link', {rel: 'icon', href: '/favicon.ico'}]],
     // appearance: 'light',
     // postRender(context) {

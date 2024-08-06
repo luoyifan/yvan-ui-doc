@@ -10,6 +10,7 @@ author: yvan
 |:---------------------------------|----------------|
 | [01_zback.md](./01_zback.md)     | 后台编码规范         |
 | [01_system.md](./01_system.md)   | 系统标准函数         |
+| [01_mybatis.md](./01_system.md)  | MyBatis框架特性   |
 | [example1.md](./01_zexample1.md) | 示例1.基础资料       |
 | [example2.md](./01_zexample2.md) | 示例2.开发表单       |
 | [example3.md](./01_zexample3.md) | 示例3.开发ASN单据界面  |
