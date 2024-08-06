@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Galaxis Dev Platform
   text: 快速上手中文教程
-  tagline: 企业级无代码开发平台
+  tagline: 企业级低代码(无代码)开发平台
   image:
     src: /logo.png
     alt: Galaxis Dev Platform
