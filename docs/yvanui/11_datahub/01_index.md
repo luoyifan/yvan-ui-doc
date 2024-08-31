@@ -1,8 +1,5 @@
----
-title: 数据集成平台
----
 
-# 数据集成平台
+# 介绍
 
 数据集成平台是由凯乐士开发的一款专为优化和增强WMS（仓库管理系统）与上下游外部系统间数据互通而设计的工具平台。该平台致力于将来自不同业务系统的异构数据高效且安全地接入WMS系统，以提高整体运营效率。
 
@@ -44,7 +41,7 @@ title: 数据集成平台
 - **方案详情**：左侧显示方案的步骤列表，每一步骤代表数据处理的一个阶段。
 - **编辑区域**：位于方案详情的中间部分，提供详细的步骤节点编辑功能，允许用户配置每个步骤的具体参数和逻辑
 
-## 数据源新建和编辑
+## 数据源详情
 
 ![[Pasted image 20240831150648.png]]
 用于新建数据源的窗口，提供了用户输入和配置新数据源所需的各种字段。下面是每个元素的解释：
@@ -58,7 +55,7 @@ title: 数据集成平台
 7. **密码**: 提供访问数据源所需的密码。
 8. **附加参数**: 这个部分允许用户添加额外的参数来配置数据源。例如，对于JDBC数据源，这可能是连接池设置或其他特定于数据库的选项。每个参数都由键值对组成，用户可以通过点击"+"按钮添加更多的参数行。
 
-## 步骤 step
+## 方案详情
 
 ![[Pasted image 20240831151727.png]]
 这个步骤列表展示了名为"查询ERP表数据"的集成方案，它包含了多个步骤，用于将ERP系统中的商品数据提取出来并插入到目标系统中的三个表中：商品、包装和包装级别。下面是对每个步骤的详细描述：
@@ -81,32 +78,12 @@ title: 数据集成平台
 
 这个集成方案的目的是确保从ERP系统中提取的商品数据能够准确无误地同步到凯乐士WMS系统中。通过设置变量、执行查询、更新表和逻辑判断，实现了数据的高效迁移
 
-# 节点类型
-## 设置变量 setVariable
-声明
+# 主要节点类型
+
+## 所有步骤都有的公共属性
 ```typescript
 {
-	type: 'setVariable',  
-	/**  
-	 * 设置变量,并合并到上下文  
-	 */  
-	set: FieldRule[]  
-	  
-	/**  
-	 * 是否展复制行变量  
-	 */  
-	withDupRow?: boolean,  
-	/**  
-	 * 展平变量的数据代码  
-	 */  
-	dupRowCode?: '',
-	
-	/**  
-	 * 分解数据行之后循环的步骤  
-	 */  
-	steps?: Step[],
-	
-	/**  
+    /**  
 	 * 步骤唯一编码  
 	 */  
 	id?: string,  
@@ -155,6 +132,32 @@ title: 数据集成平台
 	loggerFormat?: '',
 }
 ```
+
+## 设置变量 setVariable
+声明
+```typescript
+{
+	type: 'setVariable',  
+	/**  
+	 * 设置变量,并合并到上下文  
+	 */  
+	set: FieldRule[]  
+	  
+	/**  
+	 * 是否展复制行变量  
+	 */  
+	withDupRow?: boolean,  
+	/**  
+	 * 展平变量的数据代码  
+	 */  
+	dupRowCode?: '',
+	
+	/**  
+	 * 分解数据行之后循环的步骤  
+	 */  
+	steps?: Step[],
+}
+```
 示例
 ```javascript
 {  
@@ -184,7 +187,7 @@ title: 数据集成平台
 	/**  
 	 * 数据源ID  
 	 */
-	 dataSourceId: string,  
+	dataSourceId: string,  
 	 
 	/**  
 	 * 是否用将进上下文变量合并到输入参数  
@@ -246,7 +249,8 @@ title: 数据集成平台
 	  
 	/**  
 	 * 更新方式, 可以是只插入,  更新+替换(需要写 whereParams 条件)  
-	 */updateMode: 'insert' | 'update' | 'replace'  
+	 */
+	updateMode: 'insert' | 'update' | 'replace'  
 	  
 	/**  
 	 * 是否在未更新到数据时报错  
@@ -261,7 +265,7 @@ title: 数据集成平台
 	/**  
 	 * 数据源ID  
 	 */
-	 dataSourceId: string,  
+	dataSourceId: string,  
 	 
 	/**  
 	 * 是否用将进上下文变量合并到输入参数  
@@ -289,6 +293,135 @@ title: 数据集成平台
 	batchMaxCount: number
 }
 ```
+
+
+目标字段的数据结构声明 FieldRule
+
+```typescript
+{
+	/**  
+	 * 目标字段名,不允许使用表达式  
+	 */  
+	field: string,  
+	  
+	/**  
+	 * 字段转换的数值类型  
+	 */  
+	javaType: 'long' | 'integer' | 'timestamp' | 'date' | 'string'  
+	  
+	/**  
+	 * 字段规则是否禁用, 默认 false  
+	 */
+	disabled?: boolean  
+	  
+	/**  
+	 * 字段是否禁止更新  
+	 */  
+	updateDisabled?: boolean  
+	  
+	/**  
+	 * 字段是否禁止插入  
+	 */  
+	insertDisabled?: boolean  
+	  
+	/**  
+	 * 固定值  
+	 */  
+	value?: string  
+	  
+	/**  
+	 * 字段为空时的默认值，支持表达式  
+	 */  
+	defaultValueOnNull?: string  
+	  
+	/**  
+	 * 字段是否允许为空  
+	 */  
+	notNull?: boolean  
+	  
+	/**  
+	 * 在插入模式下，字段的默认值，当字段为空时取默认值, 允许使用表达式  
+	 */  
+	defaultValue?: string  
+	  
+	/**  
+	 * 来源数据名  
+	 */  
+	sourceDataName?: string  
+	  
+	/**  
+	 * 来源数据的字段名  
+	 */  
+	sourceDataField?: string  
+	  
+	/**  
+	 * 值格式化表达式，当 valueMapping/dict 都不存在时有效，用来转换日期格式、转换助记码等 
+	 */  
+	valueFormatter?: string  
+	  
+	/**  
+	 * 源值到目标值的映射关系  
+	 */  
+	valueMapping?: {  
+	    [key: string]: string  
+	}  
+	  
+	/**  
+	 * 源值到目标值的映射关系未找到时的默认值，支持表达式  
+	 */  
+	valueMappingNotFoundValue?: string  
+	  
+	/**  
+	 * 源值到目标值的映射关系未找到时是否报错, 默认 false  
+	 */
+	valueMappingErrorOnNotFound?: boolean  
+	  
+	/**  
+	 * 源值到目标值的映射字典名.  
+	 * 字典表是 sys_dictionary, 取的是 dict_code.  
+	 * 当找不到字典时，报错  
+	 */  
+	dict?: string  
+	  
+	/**  
+	 * 查找字典的字段，常规填写的值有: var_name / udf1 / udf2 / udf3 / dict_text 等  
+	 * 当匹配不到字典时，取 valueMappingNotFoundValue  
+	 */
+	dictKeyField?: 'var_name' | 'udf1' | 'udf2' | 'udf3' | 'dict_text' | 'dict_value'  
+	  
+	/**  
+	 * 字典的取值字段，默认情况都是 dict_value, 也可以是  var_name / udf1 / udf2 / udf3 / dict_text 等  
+	 */
+	dictValueField?: 'var_name' | 'udf1' | 'udf2' | 'udf3' | 'dict_text' | 'dict_value'  
+	  
+	/**  
+	 * 数据交换表, 对应方案的 lookups 声明的数据交换  
+	 */  
+	lookupKey?: string,  
+	  
+	/**  
+	 * 数据交换表的值字段，可以是表达式, 比如 ${row.field} / ${rows[0].field}  
+	 */
+	lookupValue?: string,  
+	  
+	/**  
+	 * 数据交换时的参数  
+	 */  
+	lookupParams?: FieldRule[]  
+	  
+	/**  
+	 * 数据交换时, 如果找不到数据时的默认值, 默认空 null  
+	 */
+	lookupNotFoundValue?: string  
+	  
+	/**  
+	 * 数据交换时, 如果找不到数据时是否报错, 默认为 false  
+	 */
+	lookupErrorOnNotFound?: boolean
+}
+```
+
+
 示例
 ```javascript
 {  
@@ -331,7 +464,6 @@ title: 数据集成平台
 }
 ```
 
-
 ## 逻辑判断 ifCondition
 声明
 ```typescript
@@ -347,54 +479,6 @@ title: 数据集成平台
 	 * 如果条件达成之后的执行步骤  
 	 */  
 	steps: Step[]
-
-	/**  
-	 * 步骤唯一编码  
-	 */  
-	id?: string,  
-	
-	/**  
-	 * 步骤中文标题  
-	 */  
-	title: string,  
-	
-	/**  
-	 * 步骤是否禁用  
-	 */  
-	disabled?: boolean,  
-	
-	/**  
-	 * 步骤发生异常时中断  
-	 */  
-	interruptOnException?: boolean,  
-	
-	/**  
-	 * 断言，当条件达成时中断程序，输出异常  
-	 */  
-	assets?: {  
-	    /**  
-	     * 断言名称  
-	     */  
-	    name: string,  
-	    /**  
-	     * 断言条件  
-	     */  
-	    condition: YvanCondition,  
-	    /**  
-	     * 断言异常信息  
-	     */  
-	    exceptionMessage: '',  
-	}[],  
-	
-	/**  
-	 * 是否记录性能  
-	 */  
-	recordPerformance?: true,  
-	
-	/**  
-	 * 日志格式, 可能用到 ${} 表达式  
-	 */  
-	loggerFormat?: '',
 }
 ```
 
@@ -422,9 +506,9 @@ title: 数据集成平台
 ```
 
 
-# 示例
+# 综合示例
 
-数据集成方案，是凯乐士二开中，将不同系统的数据接入到WMS系统中来的过程；
+方案描述
 
 ```javascript
 {  
@@ -432,12 +516,19 @@ title: 数据集成平台
     title: '商品集成',    // 集成方案的标题  
     path: '接口集成/基础数据/商品', // 菜单路径, 用 / 符号分开  
     sort: 1,                    // 排序，越小越靠前  
+    
     // 预加载字典集合. 凡是用到的字典名称，方案启动时预加载到内存中
     preloadDicts: ['ITEM_CLASSIFY', 'BAS_DIV', 'BAS_GROUPS'],  
-    // 交换字典的声明  
-    lookups: [],  
-    // 步骤的声明  
-    steps: []
+    
+    // 交换字典声明  
+    lookups: [
+	    ...
+    ],  
+    
+    // 方案步骤声明  
+    steps: [
+	    ...
+    ]
 }
 ```
 
@@ -566,7 +657,7 @@ basItem.setOwnerId(101L);
 },
 ```
 
-## 新增记录时候才使用值 defaultValueOnInsert
+## 新增记录默认值 defaultValue/notNull
 ```java
 //新增
 basItem = new BasItem();
@@ -578,14 +669,16 @@ basItem.setItemId(daoMain.snowId("ITEM_ID"));
 {  
     field: 'is_enable',  
     javaType: 'string',  
-    defaultValueOnInsert: '0001',  
-},
+    notNull: true,  
+    defaultValue: '0001',  
+},  
 {  
     field: 'item_id',  
     javaType: 'long',  
-    updateDisabled: true,
-    defaultValueOnInsert: '${snow_id("bas_item")}',  
-}
+    updateDisabled: true,  
+    notNull: true,  
+    defaultValue: '${snow_id("bas_item")}',  
+},
 ```
 
 ## 处理助记码 valueFormatter
@@ -594,62 +687,62 @@ basItem.setZjm(PinyinUtils.getStringHeadPurePinYin(item.getItemDescSecondary(), 
 ```
 规则描述为
 ```javascript
-{  
-    field: 'zjm',  
-    javaType: 'string',  
-    valueFormatter: 'getZjm("${value}")',  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'item_desc_secondary',  
+{
+    field: 'zjm',
+        javaType: 'string',
+        valueFormatter: 'getZjm("${value}")',
+        sourceDataName: 'DSL_ITEM',
+        sourceDataField: 'item_desc_secondary',
 },
 ```
 
 ## 处理字典 dict
 ```java
-basItem.setItemClassify(isKeyInClass(CItemClassify.class, Conv.asString(item.getDept())) ? Conv.asString(item.getDept()) : CItemClassify.CODE999);  
+basItem.setItemClassify(isKeyInClass(CItemClassify.class, Conv.asString(item.getDept())) ? Conv.asString(item.getDept()) : CItemClassify.CODE999);
 
-basItem.setItemDiv(isKeyInClass(CBasDiv.class, Conv.asString(item.getDiv())) ? Conv.asString(item.getDiv()) : null);  
+        basItem.setItemDiv(isKeyInClass(CBasDiv.class, Conv.asString(item.getDiv())) ? Conv.asString(item.getDiv()) : null);
 
-basItem.setItemGroup(isKeyInClass(CBasGroups.class, Conv.asString(item.getGroups())) ? Conv.asString(item.getGroups()) : null);
+        basItem.setItemGroup(isKeyInClass(CBasGroups.class, Conv.asString(item.getGroups())) ? Conv.asString(item.getGroups()) : null);
 ```
 规则描述为
 ```javascript
-{  
-    field: 'item_classify',  
-    javaType: 'string',  
-    dict: 'ITEM_CLASSIFY',  
-    dictKey: 'var_name',  
-    valueMappingNotFoundValue: '9999',  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'dept',  
-},  
-{  
-    field: 'item_div',  
-    javaType: 'string',  
-    dict: 'BAS_DIV',  
-    dictKey: 'var_name',  
-    valueMappingNotFoundValue: null,  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'div',  
-},  
-{  
-    field: 'item_group',  
-    javaType: 'string',  
-    dict: 'BAS_GROUPS',  
-    dictKey: 'var_name',  
-    valueMappingNotFoundValue: null,  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'groups',  
+{
+    field: 'item_classify',
+        javaType: 'string',
+        dict: 'ITEM_CLASSIFY',
+        dictKey: 'var_name',
+        valueMappingNotFoundValue: '9999',
+        sourceDataName: 'DSL_ITEM',
+        sourceDataField: 'dept',
+},
+{
+    field: 'item_div',
+        javaType: 'string',
+    dict: 'BAS_DIV',
+    dictKey: 'var_name',
+    valueMappingNotFoundValue: null,
+    sourceDataName: 'DSL_ITEM',
+    sourceDataField: 'div',
+},
+{
+    field: 'item_group',
+        javaType: 'string',
+    dict: 'BAS_GROUPS',
+    dictKey: 'var_name',
+    valueMappingNotFoundValue: null,
+    sourceDataName: 'DSL_ITEM',
+    sourceDataField: 'groups',
 },
 
 // 在方案描述时，会自动将需要预加载的字典都描述清楚
-{  
-    id: 'item',  
-    title: '商品集成',  
-    path: '基础数据.商品',  
-    sort: 1,  
+{
+    id: 'item',
+        title: '商品集成',
+    path: '基础数据.商品',
+    sort: 1,
     // 预加载字典集合. 凡是用到的字典名称，方案启动时预加载到内存中
     preloadDicts: ['ITEM_CLASSIFY', 'BAS_DIV', 'BAS_GROUPS'],
-    ...
+...
 }
 
 ```
@@ -659,82 +752,82 @@ basItem.setItemGroup(isKeyInClass(CBasGroups.class, Conv.asString(item.getGroups
 
 ```java
 basItem.setIsImportable("1".equals(item.getIsImportCargoes()) ? CSysYesNo.YES : CSysYesNo.NO);
-basItem.setIsSupervised("1".equals(item.getIsInCtrl()) ? CSysYesNo.YES : CSysYesNo.NO);
-basItem.setIsSpecialty("1".equals(item.getIsIncEphedrine()) ? CSysYesNo.YES : CSysYesNo.NO);
+        basItem.setIsSupervised("1".equals(item.getIsInCtrl()) ? CSysYesNo.YES : CSysYesNo.NO);
+        basItem.setIsSpecialty("1".equals(item.getIsIncEphedrine()) ? CSysYesNo.YES : CSysYesNo.NO);
 ```
 规则描述为
 ```javascript
-{  
-    field: 'is_importable',  
-    javaType: 'string',  
-    valueMapping: {  
-        "1": "0001",  
-    },  
-    valueMappingNotFoundValue: "0000",  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'is_import_cargoes',  
-},  
-{  
-    field: 'is_supervised',  
-    javaType: 'string',  
-    valueMapping: {  
-        "1": "0001",  
-    },  
-    valueMappingNotFoundValue: "0000",  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'is_in_ctrl',  
-},  
-{  
-    field: 'is_specialty',  
-    javaType: 'string',  
-    valueMapping: {  
-        "1": "0001",  
-    },  
-    valueMappingNotFoundValue: "0000",  
-    sourceDataName: 'DSL_ITEM',  
-    sourceDataField: 'is_inc_ephedrine',  
+{
+    field: 'is_importable',
+        javaType: 'string',
+        valueMapping: {
+        "1": "0001",
+    },
+    valueMappingNotFoundValue: "0000",
+        sourceDataName: 'DSL_ITEM',
+        sourceDataField: 'is_import_cargoes',
+},
+{
+    field: 'is_supervised',
+        javaType: 'string',
+    valueMapping: {
+    "1": "0001",
+},
+    valueMappingNotFoundValue: "0000",
+        sourceDataName: 'DSL_ITEM',
+    sourceDataField: 'is_in_ctrl',
+},
+{
+    field: 'is_specialty',
+        javaType: 'string',
+    valueMapping: {
+    "1": "0001",
+},
+    valueMappingNotFoundValue: "0000",
+        sourceDataName: 'DSL_ITEM',
+    sourceDataField: 'is_inc_ephedrine',
 },
 ```
 
 ## 高级字典用法 lookup 处理多记录，比如 69码子表
 ```java
 //处理69码  
-List<ApiCmxItemBarIf> barcodeMap = mybatis.queryMany("getBarcode", item, ApiCmxItemBarIf.class);  
+List<ApiCmxItemBarIf> barcodeMap = mybatis.queryMany("getBarcode", item, ApiCmxItemBarIf.class);
 int bound = barcodeMap.size();  
-for (int i = 0; i < bound; i++) {  
-    ApiCmxItemBarIf obj = barcodeMap.get(i);  
-    switch (i) {  
-        case 0:  
-            basItem.setBarcode(obj.getBarcode());  
-            break;  
-        case 2:  
-            basItem.setBarcode2(obj.getBarcode());  
-            break;  
-        case 3:  
-            basItem.setBarcode3(obj.getBarcode());  
-            break;  
-        case 4:  
-            basItem.setBarcode4(obj.getBarcode());  
-            break;  
-        case 5:  
-            basItem.setBarcode5(obj.getBarcode());  
-            break;  
-        case 6:  
-            basItem.setBarcode6(obj.getBarcode());  
-            break;  
-        case 7:  
-            basItem.setBarcode7(obj.getBarcode());  
-            break;  
-        case 8:  
-            basItem.setBarcode8(obj.getBarcode());  
-            break;  
-        case 9:  
-            basItem.setBarcode9(obj.getBarcode());  
-            break;  
-        default:  
-            break;  
-    }  
-}
+for (int i = 0; i < bound; i++) {
+ApiCmxItemBarIf obj = barcodeMap.get(i);  
+    switch (i) {
+        case 0:
+        basItem.setBarcode(obj.getBarcode());
+        break;
+        case 2:
+        basItem.setBarcode2(obj.getBarcode());
+        break;
+        case 3:
+        basItem.setBarcode3(obj.getBarcode());
+        break;
+        case 4:
+        basItem.setBarcode4(obj.getBarcode());
+        break;
+        case 5:
+        basItem.setBarcode5(obj.getBarcode());
+        break;
+        case 6:
+        basItem.setBarcode6(obj.getBarcode());
+        break;
+        case 7:
+        basItem.setBarcode7(obj.getBarcode());
+        break;
+        case 8:
+        basItem.setBarcode8(obj.getBarcode());
+        break;
+        case 9:
+        basItem.setBarcode9(obj.getBarcode());
+        break;
+default:
+        break;
+        }
+        }
 ```
 规则描述为
 ```javascript
