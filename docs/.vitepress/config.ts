@@ -10,7 +10,7 @@ import {applyPlugins} from "./theme/plugins";
 // https://github.com/markdown-it/markdown-it-container
 export default defineConfig({
     lang: 'zh-CN',
-    title: '银河开发平台',
+    title: '凯乐士开发平台',
     description: '企业级无代码/低代码开发平台',
     head: [['link', {rel: 'icon', href: '/favicon.ico'}]],
     // appearance: 'light',
