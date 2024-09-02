@@ -1,3 +1,6 @@
+---
+title: 数据集成平台
+---
 
 # 介绍
 
@@ -82,7 +85,7 @@
 
 ## 所有步骤都有的公共属性
 ```typescript
-{
+interface StepBase {
     /**  
 	 * 步骤唯一编码  
 	 */  
@@ -136,26 +139,12 @@
 ## 设置变量 setVariable
 声明
 ```typescript
-{
+export interface StepSetVariable extends StepBase, WithResult {
 	type: 'setVariable',  
 	/**  
-	 * 设置变量,并合并到上下文  
+	 * 设置变量
 	 */  
-	set: FieldRule[]  
-	  
-	/**  
-	 * 是否展复制行变量  
-	 */  
-	withDupRow?: boolean,  
-	/**  
-	 * 展平变量的数据代码  
-	 */  
-	dupRowCode?: '',
-	
-	/**  
-	 * 分解数据行之后循环的步骤  
-	 */  
-	steps?: Step[],
+	set: FieldRule[]
 }
 ```
 示例
@@ -168,137 +157,14 @@
 }
 ```
 
-## 执行SQL查询 jdbcSqlGet
-声明
-```typescript
-{
-	type: 'jdbcSqlGet'  
-	
-	/**  
-	 * 查询 SQL  
-	 */
-	 selectSql: string,  
-	 
-	/**  
-	 * 是否批量游标读取,如果是0 就不要用游标读取  
-	 */  
-	cursorBatchSize?: number,
-	
-	/**  
-	 * 数据源ID  
-	 */
-	dataSourceId: string,  
-	 
-	/**  
-	 * 是否用将进上下文变量合并到输入参数  
-	 */  
-	withContextVariable?: boolean,  
-	
-	/**  
-	 * 输入参数  
-	 */  
-	params?: FieldRule[],
+set 中每个字段的计算，是所有步骤都会牵涉到的定义
 
-	/**  
-	 * 结果集的数据结构  
-	 */  
-	resultSchema?: YvanModel,  
-	  
-	/**  
-	 * 结果集的变量名  
-	 */  
-	resultVariable?: string,  
-	  
-	/**  
-	 * 分解数据行之后循环的步骤  
-	 */  
-	steps?: Step[],  
-	  
-	/**  
-	 * 输出测试数据  
-	 */  
-	resultTestData?: object,
-}
-```
-示例
-```javascript
-{  
-    type: "jdbcSqlGet",  
-    dataSourceId: 'HUBKLS',  
-    selectSql: `SELECT * from xxx`, 
-    withContextVariable: true,  
-    cursorBatchSize: 2000,        // 是否批量游标读取,如果是0 就不要用游标读取  
-    resultVariable: 'DSL_ITEM',   // 取一个变量名  
-    steps: [  
-        // 查询出来的记录，进入下面步骤进行循环处理
-        {...}
-    ]
-}
-```
-
-
-## 更新表 updateTable
-声明
-```typescript
-{
-	type: 'updateTable',  
-	/**  
-	 * 表名  
-	 */  
-	tableName: string  
-	  
-	/**  
-	 * 更新方式, 可以是只插入,  更新+替换(需要写 whereParams 条件)  
-	 */
-	updateMode: 'insert' | 'update' | 'replace'  
-	  
-	/**  
-	 * 是否在未更新到数据时报错  
-	 */  
-	errorIfNoEffect: boolean  
-	  
-	/**  
-	 * 判断记录是否存在的条件 replace 时有效  
-	 */  
-	whereParams: FieldRule[]
-
-	/**  
-	 * 数据源ID  
-	 */
-	dataSourceId: string,  
-	 
-	/**  
-	 * 是否用将进上下文变量合并到输入参数  
-	 */  
-	withContextVariable?: boolean,  
-	
-	/**  
-	 * 输入参数  
-	 */  
-	params?: FieldRule[],
-
-	/**  
-	 * 是否使用事务  
-	 */  
-	useTransaction: boolean  
-	  
-	/**  
-	 * 是否批量提交  
-	 */  
-	batchCommit: boolean  
-	  
-	/**  
-	 * 批量提交的最大数量  
-	 */  
-	batchMaxCount: number
-}
-```
-
-
-目标字段的数据结构声明 FieldRule
+数据字段 FieldRule
 
 ```typescript
-{
+JavaType = 'long' | 'integer' | 'timestamp' | 'date' | 'string' | 'bigdecimal' | 'boolean'
+
+interface FieldRule {
 	/**  
 	 * 目标字段名,不允许使用表达式  
 	 */  
@@ -307,12 +173,21 @@
 	/**  
 	 * 字段转换的数值类型  
 	 */  
-	javaType: 'long' | 'integer' | 'timestamp' | 'date' | 'string'  
+	javaType: JavaType,  
+	  
+	/**  
+	 * 来源数据名,不允许使用表达式  
+	 */  
+	sourceDataName?: string  
+	  
+	/**  
+	 * 来源数据的字段名,不允许使用表达式  
+	 */  
+	sourceDataField?: string  
 	  
 	/**  
 	 * 字段规则是否禁用, 默认 false  
-	 */
-	disabled?: boolean  
+	 */disabled?: boolean  
 	  
 	/**  
 	 * 字段是否禁止更新  
@@ -345,17 +220,12 @@
 	defaultValue?: string  
 	  
 	/**  
-	 * 来源数据名  
+	 * 在计算 defaultValue 之后, 比如雪花ID生成之后, 是否需要回写至其他变量（必须是 updateTable 类型）  
 	 */  
-	sourceDataName?: string  
+	writeToSource: FieldRule[]  
 	  
 	/**  
-	 * 来源数据的字段名  
-	 */  
-	sourceDataField?: string  
-	  
-	/**  
-	 * 值格式化表达式，当 valueMapping/dict 都不存在时有效，用来转换日期格式、转换助记码等 
+	 * 值格式化表达式，当 valueMapping/dict 都不存在时有效，用来转换日期格式、转换助记码等  
 	 */  
 	valueFormatter?: string  
 	  
@@ -386,23 +256,22 @@
 	/**  
 	 * 查找字典的字段，常规填写的值有: var_name / udf1 / udf2 / udf3 / dict_text 等  
 	 * 当匹配不到字典时，取 valueMappingNotFoundValue  
-	 */
-	dictKeyField?: 'var_name' | 'udf1' | 'udf2' | 'udf3' | 'dict_text' | 'dict_value'  
+	 */dictKeyField?: 'var_name' | 'udf1' | 'udf2' | 'udf3' | 'dict_text' | 'dict_value'  
 	  
 	/**  
 	 * 字典的取值字段，默认情况都是 dict_value, 也可以是  var_name / udf1 / udf2 / udf3 / dict_text 等  
-	 */
+	 */  
 	dictValueField?: 'var_name' | 'udf1' | 'udf2' | 'udf3' | 'dict_text' | 'dict_value'  
 	  
 	/**  
 	 * 数据交换表, 对应方案的 lookups 声明的数据交换  
 	 */  
-	lookupKey?: string,  
+	lookupName?: string,  
 	  
 	/**  
-	 * 数据交换表的值字段，可以是表达式, 比如 ${row.field} / ${rows[0].field}  
-	 */
-	lookupValue?: string,  
+	 * 数据交换表的值字段, 当使用 lookupParams 查询条件找到数据时，取数据交换中的哪个值  
+	 * 可以是字段名，也可以是表达式, 比如 field / ${row.field} / ${rows[0].field}  
+	 */lookupField?: string,  
 	  
 	/**  
 	 * 数据交换时的参数  
@@ -417,7 +286,190 @@
 	/**  
 	 * 数据交换时, 如果找不到数据时是否报错, 默认为 false  
 	 */
-	lookupErrorOnNotFound?: boolean
+	lookupErrorOnNotFound?: boolean  
+	  
+	/**  
+	 * 数组拼凑值, 用于将多个字段合并成为一个字段的描述  
+	 */  
+	joinValue: {  
+	    /**  
+	     * 将列表做 join 时的分隔符, 默认为分号 ";"  
+	     */    onChar?: string  
+	  
+	    /**  
+	     * 是否跳过空值, 默认为 true  
+	     */    skipEmpty?: boolean  
+	  
+	    /**  
+	     * 合并的列表  
+	     */  
+	    list: FieldRule[]  
+	  
+	    /**  
+	     * 当 list 中所有元素都是空时，自己也设置为空  
+	     */  
+	    setNullIfAllEmpty?: boolean  
+	}
+}
+```
+
+
+## 执行SQL查询 jdbcSqlGet
+声明
+```typescript
+/**  
+ * 带输入参数的步骤  
+ */  
+interface WithInput {  
+    /**  
+     * 数据源ID  
+     */    dataSourceId?: string,  
+  
+    /**  
+     * 输入参数  
+     */  
+    params?: FieldRule[],  
+}
+
+  
+/**  
+ * 带输出参数的步骤  
+ */  
+interface WithResult {  
+    /**  
+     * 结果集的数据结构，后端不需要管，前端开发工具需要具体展开  
+     */  
+    resultSchema?: YvanModel,  
+  
+    /**  
+     * 结果集的变量名  
+     */  
+    resultVariable?: string,  
+  
+    /**  
+     * 分解数据行之后循环的步骤  
+     */  
+    steps?: Step[],  
+  
+    /**  
+     * 展平数据, 必须是 Java 方法，并且带2个参数, 第一个参数是当前行, 第二个参数是方案的上下文  
+     *  
+     * Java 方法模板声明是:  
+     * public static List<Map<String, Object>> method11111(Map<String, Object> row) {     *      List<Map<String, Object>> list = new ArrayList<>();     *      // 自定义展开逻辑  
+     *      return list;  
+     * }     */    flatRowFn: ((row: object) => object[]) | string  
+  
+    /**  
+     * 是否进入 mock 阶段  
+     */  
+    mockEnable?: boolean  
+  
+    /**  
+     * 输出测试数据  
+     */  
+    mockData?: object,  
+}
+
+export interface StepJdbcSqlGet extends StepBase, WithInput, WithResult {
+	type: 'jdbcSqlGet'  
+	
+	/**  
+	 * 查询 SQL  
+	 */
+	 selectSql: string,  
+	 
+	/**  
+	 * 是否批量游标读取,如果是0 就不要用游标读取  
+	 */  
+	cursorBatchSize?: number,
+}
+```
+示例
+```javascript
+{  
+    type: "jdbcSqlGet",  
+    dataSourceId: 'HUBKLS',  
+    selectSql: `SELECT * from xxx`, 
+    cursorBatchSize: 2000,        // 是否批量游标读取,如果是0 就不要用游标读取  
+    resultVariable: 'DSL_ITEM',   // 取一个变量名  
+    steps: [  
+        // 查询出来的记录，进入下面步骤进行循环处理
+        {...}
+    ]
+}
+```
+
+
+## 更新表 updateTable
+声明
+```typescript
+  
+/**  
+ * 带数据库提交的步骤抽象  
+ */  
+interface WithDbTransaction {  
+    /**  
+     * 是否使用事务  
+     */  
+    useTransaction: boolean  
+  
+    /**  
+     * 是否批量提交  
+     */  
+    batchCommit: boolean  
+  
+    /**  
+     * 批量提交的最大数量  
+     */  
+    batchMaxCount: number  
+}
+
+interface StepUpdateTable extends StepBase, WithInput, WithDbTransaction {
+	type: 'updateTable',  
+	/**  
+	 * 表名  
+	 */  
+	tableName: string  
+	  
+	/**  
+	 * 更新方式, 可以是只插入,  更新+替换(需要写 whereParams 条件)  
+	 */
+	updateMode: 'insert' | 'update' | 'replace'  
+	  
+	/**  
+	 * 是否在未更新到数据时报错  
+	 */  
+	errorIfNoEffect: boolean  
+	  
+	/**  
+	 * 判断记录是否存在的条件 replace 时有效  
+	 */  
+	whereParams: FieldRule[]
+
+	/**  
+	 * 数据源ID  
+	 */
+	dataSourceId: string,
+	
+	/**  
+	 * 输入参数  
+	 */  
+	params?: FieldRule[],
+
+	/**  
+	 * 是否使用事务  
+	 */  
+	useTransaction: boolean  
+	  
+	/**  
+	 * 是否批量提交  
+	 */  
+	batchCommit: boolean  
+	  
+	/**  
+	 * 批量提交的最大数量  
+	 */  
+	batchMaxCount: number
 }
 ```
 
@@ -467,7 +519,7 @@
 ## 逻辑判断 ifCondition
 声明
 ```typescript
-{
+interface StepIfCondition extends StepBase {
 	type: 'ifCondition',
 	
 	/**  
@@ -485,7 +537,7 @@
 ## 调用内部方法 invokeMethod
 声明
 ```typescript
-{
+interface StepInvokeMethod extends StepBase, WithInput, WithResult {
 	type: 'invokeMethod',  
 	  
 	/**  
@@ -533,6 +585,7 @@
 ```
 
 ## 替换模式（有就更新、没有就插入）
+java逻辑
 ```java
 // 从 ERP 查询商品表数据
 def mybatis = DaoFactory.getMyBatis(AnalysisCmxApi.class, "HUBKLS");
@@ -624,6 +677,7 @@ mybatis.queryForCursor("analysisItem", param, 2000, it -> {
 ```
 
 ## 从源到目标的映射值
+java逻辑
 ```java
 basItem.setItemName(item.getItemDescSecondary());  
 basItem.setCommonName(item.getItemDescSecondary());
@@ -645,6 +699,7 @@ basItem.setCommonName(item.getItemDescSecondary());
 ```
 
 ## 固定值 value
+java逻辑
 ```java
 basItem.setOwnerId(101L);
 ```
@@ -682,227 +737,769 @@ basItem.setItemId(daoMain.snowId("ITEM_ID"));
 ```
 
 ## 处理助记码 valueFormatter
+java逻辑
 ```java
 basItem.setZjm(PinyinUtils.getStringHeadPurePinYin(item.getItemDescSecondary(), ""));
 ```
 规则描述为
 ```javascript
-{
-    field: 'zjm',
-        javaType: 'string',
-        valueFormatter: 'getZjm("${value}")',
-        sourceDataName: 'DSL_ITEM',
-        sourceDataField: 'item_desc_secondary',
+{  
+    field: 'zjm',  
+    javaType: 'string',  
+    valueFormatter: 'getZjm("${value}")',  
+    sourceDataName: 'DSL_ITEM',  
+    sourceDataField: 'item_desc_secondary',  
 },
 ```
 
 ## 处理字典 dict
 ```java
-basItem.setItemClassify(isKeyInClass(CItemClassify.class, Conv.asString(item.getDept())) ? Conv.asString(item.getDept()) : CItemClassify.CODE999);
+basItem.setItemClassify(isKeyInClass(CItemClassify.class, Conv.asString(item.getDept())) ? Conv.asString(item.getDept()) : CItemClassify.CODE999);  
 
-        basItem.setItemDiv(isKeyInClass(CBasDiv.class, Conv.asString(item.getDiv())) ? Conv.asString(item.getDiv()) : null);
+basItem.setItemDiv(isKeyInClass(CBasDiv.class, Conv.asString(item.getDiv())) ? Conv.asString(item.getDiv()) : null);  
 
-        basItem.setItemGroup(isKeyInClass(CBasGroups.class, Conv.asString(item.getGroups())) ? Conv.asString(item.getGroups()) : null);
+basItem.setItemGroup(isKeyInClass(CBasGroups.class, Conv.asString(item.getGroups())) ? Conv.asString(item.getGroups()) : null);
 ```
 规则描述为
 ```javascript
-{
-    field: 'item_classify',
-        javaType: 'string',
-        dict: 'ITEM_CLASSIFY',
-        dictKey: 'var_name',
-        valueMappingNotFoundValue: '9999',
-        sourceDataName: 'DSL_ITEM',
-        sourceDataField: 'dept',
-},
-{
-    field: 'item_div',
-        javaType: 'string',
-    dict: 'BAS_DIV',
-    dictKey: 'var_name',
-    valueMappingNotFoundValue: null,
-    sourceDataName: 'DSL_ITEM',
-    sourceDataField: 'div',
-},
-{
-    field: 'item_group',
-        javaType: 'string',
-    dict: 'BAS_GROUPS',
-    dictKey: 'var_name',
-    valueMappingNotFoundValue: null,
-    sourceDataName: 'DSL_ITEM',
-    sourceDataField: 'groups',
-},
+[
+	{  
+	    field: 'item_classify',  
+	    javaType: 'string',  
+	    dict: 'ITEM_CLASSIFY',  
+	    dictKey: 'var_name',  
+	    dictValueField: 'dict_value',  
+	    valueMappingNotFoundValue: '9999',  
+	    sourceDataName: 'DSL_ITEM',  
+	    sourceDataField: 'dept',  
+	},  
+	{  
+	    field: 'item_div',  
+	    javaType: 'string',  
+	    dict: 'BAS_DIV',  
+	    dictKey: 'var_name',  
+	    dictValueField: 'dict_value',  
+	    valueMappingNotFoundValue: null,  
+	    sourceDataName: 'DSL_ITEM',  
+	    sourceDataField: 'div',  
+	},  
+	{  
+	    field: 'item_group',  
+	    javaType: 'string',  
+	    dict: 'BAS_GROUPS',  
+	    dictKey: 'var_name',  
+	    dictValueField: 'dict_value',  
+	    valueMappingNotFoundValue: null,  
+	    sourceDataName: 'DSL_ITEM',  
+	    sourceDataField: 'groups',  
+	},
+]
 
 // 在方案描述时，会自动将需要预加载的字典都描述清楚
-{
-    id: 'item',
-        title: '商品集成',
-    path: '基础数据.商品',
-    sort: 1,
+{  
+    id: 'item',  
+    title: '商品集成',  
+    path: '基础数据.商品',  
+    sort: 1,  
     // 预加载字典集合. 凡是用到的字典名称，方案启动时预加载到内存中
     preloadDicts: ['ITEM_CLASSIFY', 'BAS_DIV', 'BAS_GROUPS'],
-...
+    ...
 }
 
 ```
 
 
-## 值映射关系 valueMapping
+## 值映射关系（valueMapping）
+java逻辑
 
 ```java
 basItem.setIsImportable("1".equals(item.getIsImportCargoes()) ? CSysYesNo.YES : CSysYesNo.NO);
-        basItem.setIsSupervised("1".equals(item.getIsInCtrl()) ? CSysYesNo.YES : CSysYesNo.NO);
-        basItem.setIsSpecialty("1".equals(item.getIsIncEphedrine()) ? CSysYesNo.YES : CSysYesNo.NO);
+basItem.setIsSupervised("1".equals(item.getIsInCtrl()) ? CSysYesNo.YES : CSysYesNo.NO);
+basItem.setIsSpecialty("1".equals(item.getIsIncEphedrine()) ? CSysYesNo.YES : CSysYesNo.NO);
 ```
 规则描述为
 ```javascript
-{
-    field: 'is_importable',
-        javaType: 'string',
-        valueMapping: {
-        "1": "0001",
-    },
-    valueMappingNotFoundValue: "0000",
-        sourceDataName: 'DSL_ITEM',
-        sourceDataField: 'is_import_cargoes',
+{  
+    field: 'is_importable',  
+    javaType: 'string',  
+    valueMapping: {  
+        "1": "0001",  
+    },  
+    valueMappingNotFoundValue: "0000",  
+    sourceDataName: 'DSL_ITEM',  
+    sourceDataField: 'is_import_cargoes',  
+},  
+{  
+    field: 'is_supervised',  
+    javaType: 'string',  
+    valueMapping: {  
+        "1": "0001",  
+    },  
+    valueMappingNotFoundValue: "0000",  
+    sourceDataName: 'DSL_ITEM',  
+    sourceDataField: 'is_in_ctrl',  
+},  
+{  
+    field: 'is_specialty',  
+    javaType: 'string',  
+    valueMapping: {  
+        "1": "0001",  
+    },  
+    valueMappingNotFoundValue: "0000",  
+    sourceDataName: 'DSL_ITEM',  
+    sourceDataField: 'is_inc_ephedrine',  
 },
-{
-    field: 'is_supervised',
-        javaType: 'string',
-    valueMapping: {
-    "1": "0001",
+```
+
+## 合并多个字段（joinValue）, 示例: 处理批文
+
+Java逻辑
+
+```java
+/* 
+  处理批文逻辑为:
+  
+根据 ERP 表中的字段: approve_no1 / approve_no2 / ... / approve_no5  
+当 approve_no1 和 approve_no1_val_dt 有值, 就拼起来: approve_no1 + ',' + approve_no1_val_dt(转换为 yyyy-MM-dd 格式)  
+最后拼凑成大字符串 approve_no1,approve_no1_val_dt;approve_no2,approve_no2_val_dt; ...; approve_no5,approve_no5_val_dt;拼凑好的字符串放入 approval_no 字段中
+*/
+String approvalNo = "";  
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+if (StringUtils.isNotEmpty(item.getApproveNo1()) && !"N/A".equals(item.getApproveNo1()) && Objects.nonNull(item.getApproveNo1ValDt())) {  
+    approvalNo += item.getApproveNo1() + "," + item.getApproveNo1ValDt().toLocalDateTime().toLocalDate().format(formatter) + ";"; 
+}  
+if (StringUtils.isNotEmpty(item.getApproveNo2()) && !"N/A".equals(item.getApproveNo2()) && Objects.nonNull(item.getApproveNo2ValDt())) {  
+    approvalNo += item.getApproveNo2() + "," + item.getApproveNo2ValDt().toLocalDateTime().toLocalDate().format(formatter) + ";"; 
+}  
+if (StringUtils.isNotEmpty(item.getApproveNo3()) && !"N/A".equals(item.getApproveNo3()) && Objects.nonNull(item.getApproveNo3ValDt())) {  
+    approvalNo += item.getApproveNo3() + "," + item.getApproveNo3ValDt().toLocalDateTime().toLocalDate().format(formatter) + ";"; 
+}  
+if (StringUtils.isNotEmpty(item.getApproveNo4()) && !"N/A".equals(item.getApproveNo4()) && Objects.nonNull(item.getApproveNo4ValDt())) {  
+    approvalNo += item.getApproveNo4() + "," + item.getApproveNo4ValDt().toLocalDateTime().toLocalDate().format(formatter) + ";"; 
+}  
+if (StringUtils.isNotEmpty(item.getApproveNo5()) && !"N/A".equals(item.getApproveNo5()) && Objects.nonNull(item.getApproveNo5ValDt())) {  
+    approvalNo += item.getApproveNo5() + "," + item.getApproveNo5ValDt().toLocalDateTime().toLocalDate().format(formatter) + ";"; 
+}  
+basItem.setApprovalNo(approvalNo);
+```
+
+规则描述为
+
+```javascript
+{  
+    field: 'approval_no',  
+    javaType: 'string',  
+    
+    // 数组组合值, 用于将多个字段合并成为一个字段的描述
+    joinValue: {  
+        onChar: ';',     // 用分号间隔多个值  
+        skipEmpty: true, // join 时忽略空值  
+        list: [  
+            {  
+                joinValue: {  
+                    onChar: ',',  
+                    skipEmpty: false,  
+                    // 当 list 中所有元素都是空时，自己也设置为空  
+                    setNullIfAllEmpty: true,
+                    list: [  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no1',  
+                        },  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no1_val_dt',  
+                            valueFormatter: 'formatDate("${value}", "yyyy-MM-dd")',  
+                        }  
+                    ]  
+                }  
+            },  
+            {  
+                joinValue: {  
+                    onChar: ',',  
+                    skipEmpty: false,  
+                    setNullIfAllEmpty: true,  
+                    list: [  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no2',  
+                        },  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no2_val_dt',  
+                            valueFormatter: 'formatDate("${value}", "yyyy-MM-dd")',  
+                        }  
+                    ]  
+                }  
+            },  
+            {  
+                joinValue: {  
+                    onChar: ',',  
+                    skipEmpty: false,  
+                    setNullIfAllEmpty: true,  
+                    list: [  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no3',  
+                        },  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no3_val_dt',  
+                            valueFormatter: 'formatDate("${value}", "yyyy-MM-dd")',  
+                        }  
+                    ]  
+                }  
+            },  
+            {  
+                joinValue: {  
+                    onChar: ',',  
+                    skipEmpty: false,  
+                    setNullIfAllEmpty: true,  
+                    list: [  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no4',  
+                        },  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no4_val_dt',  
+                            valueFormatter: 'formatDate("${value}", "yyyy-MM-dd")',  
+                        }  
+                    ]  
+                }  
+            },  
+            {  
+                joinValue: {  
+                    onChar: ',',  
+                    skipEmpty: false,  
+                    setNullIfAllEmpty: true,  
+                    list: [  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no5',  
+                        },  
+                        {  
+                            javaType: 'string',  
+                            sourceDataName: 'DSL_ITEM',  
+                            sourceDataField: 'approve_no5_val_dt',  
+                            valueFormatter: 'formatDate("${value}", "yyyy-MM-dd")',  
+                        }  
+                    ]  
+                }  
+            }  
+        ]  
+    }  
+}
+```
+
+## 解析法定属性
+Java逻辑
+```java
+//解析法定属性
+/*
+准备好 sys_dictionary_items 字典表，dict_code是 'LEGAL_ATTR'  
+根据 ERP 表中的 legal_attr 字段, 从字典表中找 dict_value = legal_attr 的记录  
+将这条记录的 udf1 属性反 JSON解析  
+  
+将JSON属性中的  
+approvalConfirm 写入 is_check_approval 字段  
+inspection 写入 is_inspection 字段  
+duplex 写入 is_duplex 字段  
+licenseCheck 写入 is_license_check 字段  
+instruments 写入 is_instruments 字段  
+patentMedicine 写入 is_patent_medicine 字段  
+chineseMedicine 写入 is_chinese_medicine 字段
+*/
+static Map<String, SysDictionaryItems> getLegalAttr() {  
+    List<SysDictionaryItems> list = queryDsl.selectFrom(QSysDictionaryItems.sysDictionaryItems)  
+            .where(QSysDictionaryItems.sysDictionaryItems.dictCode.eq("LEGAL_ATTR"))  
+            .fetch();  
+    Map<String, SysDictionaryItems> map = new HashMap<>();  
+    list.forEach(item -> map.put(item.getDictValue(), item)  
+    );  
+    return map;  
+}
+
+
+if (null == legalAttrMap.get(item.getLegalAttr())) {  
+    //给个默认值  
+    basItem.setLegalAttr(CLegalAttr.CODE999);  
+} else {  
+    // 根据法定属性获取 SysDictionaryItems 对象  
+    SysDictionaryItems sysDictionaryItems = legalAttrMap.get(item.getLegalAttr());  
+    // 将 SysDictionaryItems 的 udf1 字段解析为 LegalAttrView 对象  
+    LegalAttrView legalAttrView = JSON.parseObject(sysDictionaryItems.getUdf1(), LegalAttrView.class);  
+    // 根据 LegalAttrView 的值设置 basItem 的属性  
+    if (legalAttrView != null) {  
+        basItem.setIsCheckApproval(legalAttrView.getApprovalConfirm() ? CSysYesNo.YES : CSysYesNo.NO);  
+        basItem.setIsInspection(legalAttrView.getInspection() ? CSysYesNo.YES : CSysYesNo.NO);  
+        basItem.setIsDuplex(legalAttrView.getDuplex() ? CSysYesNo.YES : CSysYesNo.NO);  
+        basItem.setIsLicenseCheck(legalAttrView.getLicenseCheck() ? CSysYesNo.YES : CSysYesNo.NO);  
+        basItem.setIsInstruments(legalAttrView.getInstruments() ? CSysYesNo.YES : CSysYesNo.NO);  
+        basItem.setIsPatentMedicine(legalAttrView.getPatentMedicine() ? CSysYesNo.YES : CSysYesNo.NO);  
+        basItem.setIsChineseMedicine(legalAttrView.getChineseMedicine() ? CSysYesNo.YES : CSysYesNo.NO);  
+    }  
+    // 直接从 item 对象设置 legalAttr 属性  
+    basItem.setLegalAttr(item.getLegalAttr());  
+}
+```
+
+lookups 交换字典描述
+```javascript
+{  
+    lookupName: 'LEGAL_ATTR',  
+    cache: true,  
+    pullMode: 'none',       // 预加载完之后，不再进行数据拉取  
+    preloadEnable: true,    // 要求预加载  
+    preloadParams: [],      // 预加载参数  
+    resultIsMuliRow: false, // 结果值一定是单行  
+    step: {  
+        type: 'jdbcSqlGet',  
+        dataSourceId: 'master',  
+        selectSql: "select * from sys_dictionary_items where dict_code = 'LEGAL_ATTR'",  
+        // 用 json 反序列化 udf1 字段，并将反序列化后的属性合并到当前行  
+        flatRowFn: 'com.galaxis.wms.api.AnalysisCmxApi#flatLegalAttr',  
+        resultSchema: {  
+            valueType: "object",  
+            properties: {  
+                approvalConfirm: {valueType: "boolean", title: '是否校验批准文号'},  
+                inspection: {valueType: "boolean", title: '是否验收'},  
+                duplex: {valueType: "boolean", title: '是否双人操作'},  
+                licenseCheck: {valueType: "boolean", title: '是否校验三证'},  
+                instruments: {valueType: "boolean", title: '是否医疗器械'},  
+                patentMedicine: {valueType: "boolean", title: '是否成药'},  
+                chineseMedicine: {valueType: "boolean", title: '是否中药'},  
+            }  
+        }  
+  
+    } as StepJdbcSqlGet,  
+}
+```
+
+字段规则描述为
+```javascript
+{  
+    field: 'legal_attr',  
+    javaType: 'string',  
+    notNull: true,  
+    defaultValue: '9999',  
+    sourceDataName: "DSL_ITEM",  
+    sourceDataField: "legal_attr",  
+},  
+{  
+    field: 'is_check_approval',  
+    javaType: 'string',  
+    // 如果 lookup 找到了数据, 是 boolean 类型，需要再进行 valueMapping 值映射
+    // true 转换为 0001
+    valueMapping: {  
+        "true": "0001",  
+    },  
+    valueMappingNotFoundValue: null, // 如果 lookup 没有找到这行数据，默认给 null  
+    lookupName: 'LEGAL_ATTR',        // 找到 LEGAL_ATTR 这个数据交换  
+    lookupField: 'approvalConfirm',  // 取 lookup 数据行的 approvalConfirm 字段  
+    lookupNotFoundValue: null,       // 如果 lookup 找不到数据时的默认值, 默认空 null  
+	// lookup 匹配条件  
+	lookupParams: [  
+	    {  
+	        field: 'dict_value',           // 匹配数据中的 dict_value 属性相等的 
+	        sourceDataName: "DSL_ITEM",    // 数据源  
+	        sourceDataField: "legal_attr", // 数据源字段  
+	    }  
+	]
 },
-    valueMappingNotFoundValue: "0000",
-        sourceDataName: 'DSL_ITEM',
-    sourceDataField: 'is_in_ctrl',
+{  
+    field: 'is_inspection',  
+    javaType: 'string',  
+    valueMapping: {  
+        "true": "0001",  
+    },  
+    valueMappingNotFoundValue: null,  
+    lookupName: 'LEGAL_ATTR',  
+    lookupField: 'inspection',  
+    lookupNotFoundValue: null,  
+    lookupParams: [  
+        {  
+            field: 'dict_value',  
+            sourceDataName: "DSL_ITEM",  
+            sourceDataField: "legal_attr",  
+        }  
+    ]  
+},  
+{  
+    field: 'is_duplex',  
+    javaType: 'string',  
+    valueMapping: {  
+        "true": "0001",  
+    },  
+    valueMappingNotFoundValue: null,  
+    lookupName: 'LEGAL_ATTR',  
+    lookupField: 'duplex',  
+    lookupNotFoundValue: null,  
+    lookupParams: [  
+        {  
+            field: 'dict_value',  
+            sourceDataName: "DSL_ITEM",  
+            sourceDataField: "legal_attr",  
+        }  
+    ]  
+},  
+{  
+    field: 'is_license_check',  
+    javaType: 'string',  
+    valueMapping: {  
+        "true": "0001",  
+    },  
+    valueMappingNotFoundValue: null,  
+    lookupName: 'LEGAL_ATTR',  
+    lookupField: 'licenseCheck',  
+    lookupNotFoundValue: null,  
+    lookupParams: [  
+        {  
+            field: 'dict_value',  
+            sourceDataName: "DSL_ITEM",  
+            sourceDataField: "legal_attr",  
+        }  
+    ]  
+},  
+{  
+    field: 'is_instruments',  
+    javaType: 'string',  
+    valueMapping: {  
+        "true": "0001",  
+    },  
+    valueMappingNotFoundValue: null,  
+    lookupName: 'LEGAL_ATTR',  
+    lookupField: 'instruments',  
+    lookupNotFoundValue: null,  
+    lookupParams: [  
+        {  
+            field: 'dict_value',  
+            sourceDataName: "DSL_ITEM",  
+            sourceDataField: "legal_attr",  
+        }  
+    ]  
+},  
+{  
+    field: 'is_patent_medicine',  
+    javaType: 'string',  
+    valueMapping: {  
+        "true": "0001",  
+    },  
+    valueMappingNotFoundValue: null,  
+    lookupName: 'LEGAL_ATTR',  
+    lookupField: 'patentMedicine',  
+    lookupNotFoundValue: null,  
+    lookupParams: [  
+        {  
+            field: 'dict_value',  
+            sourceDataName: "DSL_ITEM",  
+            sourceDataField: "legal_attr",  
+        }  
+    ]  
 },
-{
-    field: 'is_specialty',
-        javaType: 'string',
-    valueMapping: {
-    "1": "0001",
-},
-    valueMappingNotFoundValue: "0000",
-        sourceDataName: 'DSL_ITEM',
-    sourceDataField: 'is_inc_ephedrine',
-},
+```
+
+## 拆分包装逻辑
+```java
+/**  
+ * 初始化新增解析包装详情表  
+ *  
+ * @param basItem  
+ * @param item  
+ * @param basPackage  
+ */  
+private static void initBasPackageItems(BasItem basItem, ApiCmxItemMasterIf item, BasPackage basPackage) {  
+    //新增包装详情  
+    //主包装/主单位  
+    BasPackageItems basPackageItemsBase = new BasPackageItems();  
+    basPackageItemsBase.setItemId(basItem.getItemId());  
+    basPackageItemsBase.setPackId(basPackage.getPackId());  
+    basPackageItemsBase.setIsEnable(CSysYesNo.YES);  
+    basPackageItemsBase.setIsMaster(CSysYesNo.YES);  
+    basPackageItemsBase.setPackLevel(CPackLevel.BASE);  
+    basPackageItemsBase.setPackUnit(item.getStandardUom());  
+    //主单位设置为1  
+    basPackageItemsBase.setPackMeas(1);  
+    queryDsl.insert(QBasPackageItems.basPackageItems).populate(basPackageItemsBase).execute();  
+    //内包装/中包装  
+    BasPackageItems basPackageItemsInner = new BasPackageItems();  
+    basPackageItemsInner.setPackLevel(CPackLevel.INNER_PACK);  
+    basPackageItemsInner.setIsEnable(CSysYesNo.YES);  
+    basPackageItemsInner.setIsMaster(CSysYesNo.NO);  
+    basPackageItemsInner.setPackUnit(item.getStandardUom());  
+    basPackageItemsInner.setItemId(basItem.getItemId());  
+    basPackageItemsInner.setPackId(basPackage.getPackId());  
+    basPackageItemsInner.setPackMeas(null != item.getInner() ? item.getInner().intValue() : null);  
+    queryDsl.insert(QBasPackageItems.basPackageItems).populate(basPackageItemsInner).execute();  
+    //箱包装  
+    BasPackageItems basPackageItemsBox = new BasPackageItems();  
+    basPackageItemsBox.setPackLevel(CPackLevel.BOX_PACK);  
+    basPackageItemsBox.setIsEnable(CSysYesNo.YES);  
+    basPackageItemsBox.setIsMaster(CSysYesNo.NO);  
+    basPackageItemsBox.setPackUnit(item.getStandardUom());  
+    basPackageItemsBox.setItemId(basItem.getItemId());  
+    basPackageItemsBox.setPackId(basPackage.getPackId());  
+    basPackageItemsBox.setPackMeas(null != item.getTotalCase() ? item.getTotalCase().intValue() : null);  
+    queryDsl.insert(QBasPackageItems.basPackageItems).populate(basPackageItemsBox).execute();  
+    //托盘包装  
+    BasPackageItems basPackageItemsTray = new BasPackageItems();  
+    basPackageItemsTray.setPackLevel(CPackLevel.TRAY);  
+    basPackageItemsTray.setIsEnable(CSysYesNo.YES);  
+    basPackageItemsTray.setIsMaster(CSysYesNo.NO);  
+    basPackageItemsTray.setPackUnit(item.getStandardUom());  
+    basPackageItemsTray.setItemId(basItem.getItemId());  
+    basPackageItemsTray.setPackId(basPackage.getPackId());  
+    //这里随便给个托盘大小  
+    basPackageItemsBox.setPackMeas(100);  
+    queryDsl.insert(QBasPackageItems.basPackageItems).populate(basPackageItemsTray).execute();  
+}
+```
+规则描述为
+```java
+  
+/**  
+ * 将一行 ERP 商品行转换为 4行包装详情行  
+ *  
+ * @param row sys_dictionary_items 表查出来的 dict_code='LEGAL_ATTR' 的所有字典行  
+ * @return 合并后的行集合  
+ */  
+public static List<Map<String, Object>> flatPackageItems(Map<String, Object> row) {  
+    List<Map<String, Object>> list = Lists.newArrayList();  
+  
+    //主包装/主单位  
+    Map<String, Object> basPackageItemsBase = Maps.newHashMap();  
+    basPackageItemsBase.put("is_master", CSysYesNo.YES);  
+    basPackageItemsBase.put("pack_level", CPackLevel.BASE);  
+    basPackageItemsBase.put("pack_meas", 1);  
+  
+    //内包装/中包装  
+    Map<String, Object> basPackageItemsInner = Maps.newHashMap();  
+    basPackageItemsBase.put("is_master", CSysYesNo.NO);  
+    basPackageItemsBase.put("pack_level", CPackLevel.INNER_PACK);  
+    basPackageItemsBase.put("pack_meas", row.get("inner"));  
+  
+    //箱包装  
+    Map<String, Object> basPackageItemsBox = Maps.newHashMap();  
+    basPackageItemsBase.put("is_master", CSysYesNo.NO);  
+    basPackageItemsBase.put("pack_level", CPackLevel.BOX_PACK);  
+    basPackageItemsBase.put("pack_meas", row.get("total_case"));  
+  
+    //托盘包装  
+    Map<String, Object> basPackageItemsTray = Maps.newHashMap();  
+    basPackageItemsBase.put("is_master", CSysYesNo.NO);  
+    basPackageItemsBase.put("pack_level", CPackLevel.TRAY);  
+    basPackageItemsBase.put("pack_meas", new BigDecimal(100));  
+  
+    return Lists.newArrayList(basPackageItemsBase, basPackageItemsInner, basPackageItemsBox, basPackageItemsTray);  
+}
+```
+
+```javascript
+{  
+    type: "setVariable",  
+    id: 'BAS_PACKAGE_ITEMS',  
+    title: '包装明细-4条数据展开',  
+    resultVariable: 'BAS_PACKAGE_ITEMS',  
+    // 用 Java 逻辑，将ERP商品行，拆分为4行  
+    flatRowFn: 'com.galaxis.wms.api.AnalysisCmxApi#flatPackageItems',  
+    steps: [  
+        {  
+            type: 'updateTable',            // 更新表  
+            dataSourceId: 'master',  
+            tableName: 'bas_package_items', // 写入 WMS 数据源的 bas_item 表  
+            updateMode: 'replace',          // 更新方式, 可以是只插入,  更新+替换(需要写 whereParams 条件)  
+            useTransaction: true,           // 使用事务  
+            batchCommit: true,              // 批量提交  
+            batchMaxCount: 500,             // 批量提交的最大数量  
+            errorIfNoEffect: true,          // 是否在未更新到数据时报错  
+  
+            // 判断记录是否存在的 where 条件 replace 模式时有效  
+            // 也用于 update 模式时，update 背后的 where 字段  
+            whereParams: [  
+                {  
+                    field: 'item_id',  
+                    javaType: 'long',  
+                    sourceDataName: 'BAS_ITEM',  
+                    sourceDataField: 'item_id',  
+                },  
+                {  
+                    field: 'pack_id',  
+                    javaType: 'long',  
+                    sourceDataName: 'BAS_PACKAGE',  
+                    sourceDataField: 'pack_id',  
+                },  
+                {  
+                    field: 'pack_level',  
+                    javaType: 'string',  
+                    sourceDataName: 'BAS_PACKAGE_ITEMS',  
+                    sourceDataField: 'pack_level',  
+                },  
+            ],  
+            params: [  
+                {  
+                    field: 'item_id',  
+                    javaType: 'long',  
+                    updateDisabled: true,  
+                    sourceDataName: 'BAS_ITEM',  
+                    sourceDataField: 'item_id',  
+                },  
+                {  
+                    field: 'pack_id',  
+                    javaType: 'long',  
+                    updateDisabled: true,  
+                    sourceDataName: 'BAS_PACKAGE',  
+                    sourceDataField: 'pack_id',  
+                },  
+                {  
+                    field: 'pack_level',  
+                    javaType: 'string',  
+                    updateDisabled: true,  
+                    sourceDataName: 'BAS_PACKAGE_ITEMS',  
+                    sourceDataField: 'pack_level',  
+                },  
+                {  
+                    field: 'pack_unit',  
+                    javaType: 'string',  
+                    updateDisabled: true,  
+                    sourceDataName: 'DSL_ITEM',  
+                    sourceDataField: 'standard_uom',  
+                },  
+                {  
+                    field: 'pack_meas',  
+                    javaType: 'bigdecimal',  
+                    updateDisabled: true,  
+                    sourceDataName: 'BAS_PACKAGE_ITEMS',  
+                    sourceDataField: 'pack_meas',  
+                },  
+            ]  
+        }  
+    ]  
+}
 ```
 
 ## 高级字典用法 lookup 处理多记录，比如 69码子表
 ```java
 //处理69码  
-List<ApiCmxItemBarIf> barcodeMap = mybatis.queryMany("getBarcode", item, ApiCmxItemBarIf.class);
+List<ApiCmxItemBarIf> barcodeMap = mybatis.queryMany("getBarcode", item, ApiCmxItemBarIf.class);  
 int bound = barcodeMap.size();  
-for (int i = 0; i < bound; i++) {
-ApiCmxItemBarIf obj = barcodeMap.get(i);  
-    switch (i) {
-        case 0:
-        basItem.setBarcode(obj.getBarcode());
-        break;
-        case 2:
-        basItem.setBarcode2(obj.getBarcode());
-        break;
-        case 3:
-        basItem.setBarcode3(obj.getBarcode());
-        break;
-        case 4:
-        basItem.setBarcode4(obj.getBarcode());
-        break;
-        case 5:
-        basItem.setBarcode5(obj.getBarcode());
-        break;
-        case 6:
-        basItem.setBarcode6(obj.getBarcode());
-        break;
-        case 7:
-        basItem.setBarcode7(obj.getBarcode());
-        break;
-        case 8:
-        basItem.setBarcode8(obj.getBarcode());
-        break;
-        case 9:
-        basItem.setBarcode9(obj.getBarcode());
-        break;
-default:
-        break;
-        }
-        }
+for (int i = 0; i < bound; i++) {  
+    ApiCmxItemBarIf obj = barcodeMap.get(i);  
+    switch (i) {  
+        case 0:  
+            basItem.setBarcode(obj.getBarcode());  
+            break;  
+        case 2:  
+            basItem.setBarcode2(obj.getBarcode());  
+            break;  
+        case 3:  
+            basItem.setBarcode3(obj.getBarcode());  
+            break;  
+        case 4:  
+            basItem.setBarcode4(obj.getBarcode());  
+            break;  
+        case 5:  
+            basItem.setBarcode5(obj.getBarcode());  
+            break;  
+        case 6:  
+            basItem.setBarcode6(obj.getBarcode());  
+            break;  
+        case 7:  
+            basItem.setBarcode7(obj.getBarcode());  
+            break;  
+        case 8:  
+            basItem.setBarcode8(obj.getBarcode());  
+            break;  
+        case 9:  
+            basItem.setBarcode9(obj.getBarcode());  
+            break;  
+        default:  
+            break;  
+    }  
+}
 ```
 规则描述为
 ```javascript
 {
-    lookups: [
-        {
-            lookupKey: 'findItemBarcode',
-            cache: false,
-            batchLoad: true,
+    lookups: [  
+        {  
+            lookupKey: 'findItemBarcode',  
+            cache: false,  
+            batchLoad: true,  
             batchLoadMaxRows: 100,
             resultIsMuliRow: true,
-            step: {
-                type: 'jdbcSqlGet',
-                dataSourceId: 'HUBKLS',
+            step: {  
+                type: 'jdbcSqlGet',  
+                dataSourceId: 'HUBKLS',  
                 selectSql: `SELECT *  
 FROM cmx_item_barcode t  WHERE
---in and t.item in #{item_code}`,
-            } as StepJdbcSqlGet,
+--in and t.item in #{item_code}`,  
+            } as StepJdbcSqlGet,  
         },
     ],
-        steps: [
-        ...
-            {
-                type: "jdbcSqlGet",
-                dataSourceId: 'HUBKLS',
-                selectSql: '...'
-                steps: [
-                    {
-                        type: 'updateTable',
-                        tableName: 'bas_item',
-                        params: [
-                            {
-                                field: 'barcode',
-                                javaType: 'string',
-                                lookupKey: 'findItemBarcode',
-                                lookupValue: '${rows[0].barcode}',  // 第1行
-                                lookupParams: [
-                                    {
-                                        field: 'item_code',
-                                        sourceDataName: 'DSL_ITEM',
-                                        sourceDataField: 'item',
-                                    }
-                                ],
-                            },
-                            {
-                                field: 'barcode2',
-                                javaType: 'string',
-                                lookupKey: 'findItemBarcode',
-                                lookupValue: '${rows[1].barcode}',  // 第2行  
-                                lookupParams: [
-                                    {
-                                        field: 'item_code',
-                                        sourceDataName: 'DSL_ITEM',
-                                        sourceDataField: 'item',
-                                    }
-                                ],
-                            },
-                            {
-                                field: 'barcode3',
-                                javaType: 'string',
-                                lookupKey: 'findItemBarcode',
-                                lookupValue: '${rows[2].barcode}',   // 第3行
-                                lookupParams: [
-                                    {
-                                        field: 'item_code',
-                                        sourceDataName: 'DSL_ITEM',
-                                        sourceDataField: 'item',
-                                    }
-                                ],
-                            },
-                            ...
-                        ]
-                    }
-                ]
-            }
+    steps: [
+	    ...
+	    {
+		    type: "jdbcSqlGet",
+		    dataSourceId: 'HUBKLS',
+		    selectSql: '...'
+		    steps: [
+			    {
+				    type: 'updateTable',  
+					tableName: 'bas_item',
+					params: [
+						{  
+						    field: 'barcode',  
+						    javaType: 'string',  
+						    lookupKey: 'findItemBarcode',  
+						    lookupValue: '${rows[0].barcode}',  // 第1行
+						    lookupParams: [  
+						        {  
+						            field: 'item_code',  
+						            sourceDataName: 'DSL_ITEM',  
+						            sourceDataField: 'item',  
+						        }  
+						    ],  
+						},
+						{  
+						    field: 'barcode2',  
+						    javaType: 'string',  
+						    lookupKey: 'findItemBarcode',  
+						    lookupValue: '${rows[1].barcode}',  // 第2行  
+						    lookupParams: [  
+						        {  
+						            field: 'item_code',  
+						            sourceDataName: 'DSL_ITEM',  
+						            sourceDataField: 'item',  
+						        }  
+						    ],  
+						},
+						{  
+						    field: 'barcode3',  
+						    javaType: 'string',  
+						    lookupKey: 'findItemBarcode',  
+						    lookupValue: '${rows[2].barcode}',   // 第3行
+						    lookupParams: [  
+						        {  
+						            field: 'item_code',  
+						            sourceDataName: 'DSL_ITEM',  
+						            sourceDataField: 'item',  
+						        }  
+						    ],  
+						},
+						...
+					]
+			    }
+		    ]
+	    }
     ]
 }
 ```
