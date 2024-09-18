@@ -188,6 +188,39 @@ and (a.item_code like '%0001%' or a.item_id = '0001')
 and (a.item_code like '%sp1%' or a.item_id = 'sp1')
 ```
 
+## use_raw_sql 忽略数据权限
+在系统框架中，如果查询的第一张表带有 wh_id / owner_id 字段，会自动加上数据权限的过滤条件。比如
+```sql 
+SELECT t.* FROM bas_customer t
+```
+系统会自动加上
+```sql
+SELECT t.* FROM bas_customer t
+ WHERE t.owner_id IN (101)
+```
+
+如果要忽略这个特性，可以在SQL语句的第一行加上 --use_raw_sql
+```sql
+--use_raw_sql
+SELECT a.owner_id, a.owner_code, a.owner_name, a.logogram, a.contact, a.telephone, a.province, a.city, a.zip,
+       a.address,
+       a.remark, a.is_default_owner, a.is_enable
+FROM bas_owner a
+WHERE a.is_enable = '0001'
+```
+或者在 JAVA 中禁用 SQL 重写
+```java
+import com.galaxis.wms.ext.SQLRewriteHolder;
+
+try {
+        SQLRewriteHolder.disable();
+} finally {
+        SQLRewriteHolder.enable();
+}
+```
+        }
+```
+
 - 综合示例
 ```sql
 SELECT
@@ -206,6 +239,37 @@ FROM bas_item
     --# and bas_item.#
 </where>
 ```
+
+## 语法糖 --i
+- --i 用于判断变量是否有值，有值的情况下用 foreach 判断集合 in ：
+```
+语法糖写法：
+
+select *  from sys_app where is_enable='0001'
+--i and app_key in #{appKeys}
+
+翻译后:
+select *  from sys_app where is_enable='0001'
+<if test="!#obj.isEmpty(appKeys)">
+  and app_key in
+  <foreach collection="appKeys" item="item" open="(" separator="," close=")">#{item}</foreach>
+</if>
+```
+
+- 带类型也同样适用
+```
+select * from bas_item t where t.is_enable='0001'
+--i and t.item_id in #{appKeys, javaType=long}
+
+翻译后:
+select * from bas_item t where t.is_enable='0001'
+<if test="!#obj.isEmpty(appKeys)">
+  and t.item_id in
+  <foreach collection="appKeys" item="item" open="(" separator="," close=")">#{item, javaType=long}</foreach>
+</if>
+```
+
+- --in 只能适用于后面只带一个变量的情况，如果有多个变量，不适用
 
 # MyBatis常规语法
 > 常见语法参考: [https://www.cnblogs.com/journeyIT/p/10254941.html](https://www.cnblogs.com/journeyIT/p/10254941.html)
