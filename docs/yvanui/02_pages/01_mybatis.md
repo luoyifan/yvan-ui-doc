@@ -119,6 +119,78 @@ left join bas_package_items t4 on t4.pack_id=t2.pack_id and t4.pack_level='0001'
 -- where t,t1,t2,t3,t4
 ```
 
+## 语法糖 --i
+- --i 用于判断变量是否有值，有值的情况下用 foreach 判断集合 in ：
+语法糖写法
+```SQL
+select *  from sys_app where is_enable='0001'
+--i and app_key in #{appKeys}
+```
+
+数据
+```json
+{
+    "appKeys": [
+        "tms",
+        "wms"
+    ]
+}
+```
+
+转换后的SQL
+```SQL
+select *  from sys_app where is_enable='0001' 
+and app_key in ('tms','wms')
+```
+
+- 带类型也同样适用
+```SQL
+select * from bas_item t where t.is_enable='0001'
+--i and t.item_id in #{appKeys, javaType=long}
+```
+
+### 多值 in 情况
+语法糖写法
+```SQL
+select * from bas_package_items t where t.is_enable='0001'
+--i and (t.item_id, t.pack_level) in #{appKeys} (#{.id, javaType=long}, #{.level})
+```
+
+数据是
+```json
+{
+  "appKeys": [
+    {
+      "id": 433050315521925957,
+      "level": "0001"
+    },
+    {
+      "id": 433050315521925957,
+      "level": "0003"
+    },
+    {
+      "id": 433050327660241734,
+      "level": "0001"
+    },
+    {
+      "id": 433050327660241734,
+      "level": "0002"
+    }
+  ]
+}
+```
+
+转换后的SQL
+```SQL
+select * from bas_package_items t where t.is_enable='0001'
+and (t.item_id, t.pack_level) in (
+  (433050315521925957, '0001'),
+  (433050315521925957, '0003'),
+  (433050327660241734, '0001'),
+  (433050327660241734, '0002')
+)
+```
+
 ## 语法糖 --#
 - --# 叫字段替代占位符
 - 只能用在二开中的 "数据字典" 定义中
@@ -240,36 +312,6 @@ FROM bas_item
 </where>
 ```
 
-## 语法糖 --i
-- --i 用于判断变量是否有值，有值的情况下用 foreach 判断集合 in ：
-```
-语法糖写法：
-
-select *  from sys_app where is_enable='0001'
---i and app_key in #{appKeys}
-
-翻译后:
-select *  from sys_app where is_enable='0001'
-<if test="!#obj.isEmpty(appKeys)">
-  and app_key in
-  <foreach collection="appKeys" item="item" open="(" separator="," close=")">#{item}</foreach>
-</if>
-```
-
-- 带类型也同样适用
-```
-select * from bas_item t where t.is_enable='0001'
---i and t.item_id in #{appKeys, javaType=long}
-
-翻译后:
-select * from bas_item t where t.is_enable='0001'
-<if test="!#obj.isEmpty(appKeys)">
-  and t.item_id in
-  <foreach collection="appKeys" item="item" open="(" separator="," close=")">#{item, javaType=long}</foreach>
-</if>
-```
-
-- --in 只能适用于后面只带一个变量的情况，如果有多个变量，不适用
 
 # MyBatis常规语法
 > 常见语法参考: [https://www.cnblogs.com/journeyIT/p/10254941.html](https://www.cnblogs.com/journeyIT/p/10254941.html)
