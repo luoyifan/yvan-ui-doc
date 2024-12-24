@@ -160,3 +160,25 @@ class DeviceInfo {
 
 ### 5.8 设置数据保存
 ![[25_aggridplus/15_aggridplus_save.png]]
+
+### 关联详情对话框
+#### 设定详情对话框校验
+找到对话框的 validateCommit 事件，参考如图下代码
+```javascript
+const resolve = arguments[0]
+const reject = arguments[1]
+// 行数据
+const row = this.quality_review_supply_detail.param.row
+const rowType = this.quality_review_supply_detail.param.rowType
+
+if (!row.qty) {
+    // 校验有异常
+    reject([
+        { field: 'quality_review_supply_detail.row.qty', message: '申请复查数量不允许为空' },
+    ])
+    return
+}
+
+// 通过全部校验
+resolve()
+```
