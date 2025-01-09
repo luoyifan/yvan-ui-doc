@@ -62,9 +62,9 @@ export default {
                         }).slice(0, 5)
                     ]
                 },
-                // techResult,
-                // shareResult,
-                {text: "技术", link: '/doc/tech'},
+                techResult,
+                shareResult,
+                // {text: "技术", link: '/doc/tech'},
                 {text: "关于", link: '/author'},
             ]
         }
