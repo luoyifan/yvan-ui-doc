@@ -8,10 +8,10 @@ author: yvan
 
 每个典型的功能，至少由4个部分组成：
 
-- .vue 文件, 基本功能模块前端文件，这个文件允许手写复杂前端逻辑、样式、复杂html等，他回引用 .design.js 文件，共同拼凑成一个前端功能模块
-- .design.js 文件, 是低代码模块拖拽、开发出来的文件，这个文件是由设计器生成的
-- .java 文件, 后端接口逻辑，这个文件是手写的，并且与前端功能模块对应，共同完成权限控制、数据交互等功能
-- .xml 文件, Mybatis的SQL文件，这个文件会被二开设计器写入，同时也允许手写，当遇到复杂 SQL 时，可以手写定制 SQL
+- .vue 文件, 基本功能模块前端文件，这个文件允许手写复杂前端逻辑、样式、复杂html等，他回引用 .design.js 文件，共同拼凑成一个前端功能模块;
+- .design.js 文件, 这个文件是由凯乐士视图设计器生成. 都是以 vjson 格式存储;
+- .java 文件, 后端接口逻辑，这个文件是手写的，并且与前端功能模块对应，共同完成权限控制、数据交互等功能;
+- .xml 文件, Mybatis的SQL文件，这个文件会被二开设计器写入，同时也允许手写，当遇到复杂 SQL 时，可以手写定制 SQL;
 
 ## vue 文件
 例如，模块名称为 CurrentTask.vue, 内容如下
@@ -170,26 +170,24 @@ export default {
 
 ### 详细解读
 ::: tip 详细解读
-- 每个功能模块的 design.js 是作为 vue 模块的一个 mixins, 混入到 vue 功能模块中的。
-- design.js 有完整的 vue 混入模块的结构，他会有自己的 data() / computed / watch / methods 等基本方法, 比如
+- 每个功能模块的 design.js 是作为 vue 模块的一个 mixins, 混入到 vue 功能模块中的。因此 design.js 有完整的 vue 混入模块的结构，他会有自己的 data() / computed / watch / methods 等基本方法;
 - design.js 返回的 data 固定有 vjson / refs 属性, 还有一些扩展出来的自定义属性
   - refs: 模块组件的引用句柄. 如果组件定义了 reference 属性，则自动生成支持组件句柄，放到 refs 中，方便编程时使用
-  - vjson: 视图定义部分，是一个 json 对象，包含了模块的所有视图定义
-  - 其他扩展属性，可能是 bind.xxx 中定义的可双向绑定属性，也可能是 grid1.checkedRows 等，高阶组件允许双向绑定的属性. 具体见 [组件定义](#组件定义-definevjsoncomponent)
-- data.vjson 属性, 固定有 title / isFlex / layout / dialogs / items 属性
-  - title: 模块标题
-  - isFlex: 是否自适应高度，开启这个选项之后，布局模式最高高度是 100%，且不会出现纵向滚动条
-  - layout: 布局模式，( PC页面=DefaultLayout; 移动端=MobileLayout, 大屏页面=DashboardLayout )
-  - dialogs: 页面中包含的子对话框组件
-  - items: 所有下级组件
-- 所有的组件都会固定有 xtype / reference / bind / listeners 4个属性，其他的为动态属性
+  - vjson: 视图定义部分，是一个 json 对象，包含了模块的所有视图定义. vjson 属性, 固定有 title / isFlex / layout / dialogs / items 属性
+    - title: 模块标题
+    - isFlex: 是否自适应高度，开启这个选项之后，布局模式最高高度是 100%，且不会出现纵向滚动条
+    - layout: 布局模式，( PC页面=DefaultLayout; 移动端=MobileLayout, 大屏页面=DashboardLayout )
+    - dialogs: 页面中包含的子对话框组件
+    - items: 所有下级组件
+  - 其他属性，可能是 bind.xxx 中定义的可双向绑定属性，也可能高阶组件允许双向绑定的属性，比如 grid1.checkedRows. 具体见 [组件定义](#组件定义-definevjsoncomponent)
+- 在 vjson 中，每个组件都有固定的4个属性 ( xtype / reference / bind / listeners )，以及一些动态属性
   - xtype: 组件类型
   - reference: 组件引用，如果有值，会在模块 refs 中生成一个属性，方便编程时使用组件引用
   - bind: 组件数据绑定，双向绑定到某个 vue 属性上，属性可能在data中或 vue 计算属性(computed)中。
   比如 bind.value = '{query.f1}' 就是绑定到 query.f1 属性上, bind.value = '{combo2_disabled}' 就是绑定到 combo2_disabled 属性上, 可能这个属性是个计算属性.
   如果计算属性只有 get 方法，没有 set 方法, 有可能会造成程序异常。  
   - listeners: 组件事件监听，绑定到当前功能模块(vue) 的 methods 方法中, 语法为: "{方法名}", 这个方法可能位于 design.js 中，也可以在 vue 文件中
-  :::
+:::
 
 ### 组件定义 defineVjsonComponent
 ```javascript
